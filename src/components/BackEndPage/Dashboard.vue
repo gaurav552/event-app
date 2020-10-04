@@ -5,7 +5,10 @@
 
 <script>
 export default {
-name: "Dashboard"
+name: "Dashboard",
+  created() {
+    document.querySelector('body').setAttribute('data-theme','light')
+  }
 }
 </script>
 
