@@ -1,8 +1,10 @@
 import { createApp } from 'vue'
 import { createWebHistory, createRouter } from "vue-router";
+
 import App from './App.vue'
 import HomePage from "@/components/HomePage/HomePage";
 import Dashboard from "@/components/BackEndPage/Dashboard";
+
 
 let app = createApp(App)
 const routes = [
@@ -30,5 +32,8 @@ const router = createRouter(
 )
 
 app.use(router)
+// app.use(VueReCaptcha,{
+//     siteKey: '6LeVItQZAAAAAI21JUbbuzyxqyRnOgz4ePgBKBcN',
+// })
 
 app.mount('#app')

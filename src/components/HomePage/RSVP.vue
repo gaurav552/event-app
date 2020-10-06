@@ -1,24 +1,59 @@
 <template>
-  <label for="email">Enter Your Email to RSVP</label>
-  <input type="text" autocomplete="off" id="email">
-  <app-round-btn class="submit" :link="false">
-    <span class="material-icons">send</span>
-  </app-round-btn>
+  <form id="rsvp-form" @submit.prevent="saveEmail">
+    <input type="text" class="squad" v-model="fakeEmail">
+    <label for="email">Enter Your Email to RSVP</label>
+    <input required type="email" autocomplete="off" v-model="trueEmail" id="email">
+    <app-round-btn @click="saveEmail" class="submit" :link="false">
+      <span class="material-icons">send</span>
+    </app-round-btn>
+
+  </form>
 </template>
 
 <script>
 import RoundButton from "@/components/utils/RoundButton";
+import db from "@/firebaseInit";
 
 export default {
 name: "RSVP",
   components:{
     AppRoundBtn: RoundButton
+  },
+  data(){
+    return{
+      fakeEmail:'',
+      trueEmail:''
+    }
+  },
+  methods:{
+    saveEmail(){
+      // console.log('akskk')
+      if(this.fakeEmail === "" && this.trueEmail !== ""){
+        db.collection("emails_collections").add({
+          email:this.trueEmail,
+          mail_sent:false
+        }).then((resp)=>{
+          console.log(resp)
+        })
+      }
+    }
   }
 }
 </script>
 
 <style scoped>
 
+.squad{
+  display: none;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
   label{
     margin: 25px auto;
     color: var(--color-frontEnd);
@@ -39,7 +74,9 @@ name: "RSVP",
   }
 
   input:focus{
-    box-shadow: inset 7px 7px 15px rgb(17, 122, 9), inset -7px -7px 15px rgba(223, 223, 223, .15);
+    transition: none;
+    box-shadow: none;
+    border:2px solid #aaa;
   }
 
   .submit{

@@ -45,4 +45,9 @@ body{
   place-items: center;
 }
 
+.grecaptcha-badge {
+  /*visibility: hidden;*/
+}
+
+
 </style>

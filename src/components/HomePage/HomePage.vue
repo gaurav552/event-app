@@ -12,7 +12,7 @@
       <h1>Golf Tournament Event</h1>
     </div>
 
-    <app-center-box></app-center-box>
+    <app-center-box :first-unit="firstUnit" :last-unit="lastUnit"></app-center-box>
 
     <div class="rsvp">
       <app-r-s-v-p></app-r-s-v-p>
@@ -32,6 +32,7 @@
 import RoundButton from "@/components/utils/RoundButton";
 import RSVP from "@/components/HomePage/RSVP";
 import CenterBox from "@/components/HomePage/CenterBox";
+import countdown from "countdown";
 
 export default {
   name: "HomePage",
@@ -39,6 +40,19 @@ export default {
     AppRoundBtn: RoundButton,
     AppRSVP:RSVP,
     AppCenterBox: CenterBox
+  },
+  data(){
+    return{
+      firstUnit:'',
+      lastUnit:''
+    }
+  },
+  beforeCreate() {
+    setInterval(()=>{
+      let timer = countdown( null,new Date("2021/06/14"),30,2).toString()
+      this.firstUnit = timer.split(" and ")[0]
+      this.lastUnit = timer.split(" and ")[1]
+    },1000)
   },
   created() {
     document.querySelector('body').setAttribute('data-theme','green')
@@ -91,10 +105,6 @@ main .heading h1{
 }
 
 .rsvp{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100%;
 }
 
