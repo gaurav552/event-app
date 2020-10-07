@@ -1,5 +1,7 @@
 <template>
+  <button><span class="material-icons">home</span></button>
 <div class="card">
+  <h3>Login</h3>
   <AppCard></AppCard>
 </div>
 </template>
@@ -25,6 +27,11 @@ name: "Login",
   display: grid;
   place-items: center;
   padding: 30px 60px;
+  font-family: 'Roboto', sans-serif
+}
+
+h3{
+  font-size: 30px;
   font-family: 'Roboto', sans-serif
 }
 </style>

@@ -5,6 +5,7 @@ import Login from "@/components/User/Login";
 
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import Register from "@/components/User/Register";
 
 const routes = [
     {
@@ -28,6 +29,18 @@ const routes = [
         path:'/login',
         component:Login,
         name:'Login',
+    },
+    {
+        path:'/register',
+        component:Register,
+        name:'Register',
+        beforeEnter: (to, from, next) => {
+            if(!firebase.auth().currentUser){
+                next({path:'/login'})
+            } else {
+                next()
+            }
+        }
     },
     {
         path:'/:pathMatch(.*)*',
