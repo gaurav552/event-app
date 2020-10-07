@@ -41,6 +41,7 @@ name: "RoundButton",
 
   a:active,button:active{
     box-shadow: none;
+    background-color: green;
   }
 
   @media only screen and (max-width: 700px) {

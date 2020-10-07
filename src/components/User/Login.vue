@@ -1,5 +1,5 @@
 <template>
-  <button><span class="material-icons">home</span></button>
+  <button @click="$router.push('/')"><span class="material-icons">home</span></button>
 <div class="card">
   <h3>Login</h3>
   <AppCard></AppCard>
@@ -18,6 +18,23 @@ name: "Login",
 </script>
 
 <style scoped>
+button{
+  position: fixed;
+  margin: 40px;
+  border: none;
+  outline: none;
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
+  border-radius: 50%;
+}
+
+button:active{
+  box-shadow: none;
+  background-color: #d9d9d9;
+}
+
 .card{
   width: max(40%, 450px);
   height: 50%;
