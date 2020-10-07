@@ -12,8 +12,10 @@
   <component name="ChangeListManager">
     <list default="true" id="94726144-2546-49a6-8c69-af446c07ab3b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/utils/RoundButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/utils/RoundButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BackEndPage/Dashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BackEndPage/Dashboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/User/Card.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/Card.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/User/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/Register.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +90,7 @@
       <workItem from="1601759128002" duration="10666000" />
       <workItem from="1601942625164" duration="11294000" />
       <workItem from="1601972323238" duration="6551000" />
-      <workItem from="1602061885233" duration="12748000" />
+      <workItem from="1602061885233" duration="13410000" />
     </task>
     <servers />
   </component>

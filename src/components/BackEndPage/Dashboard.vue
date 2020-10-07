@@ -1,6 +1,7 @@
 <template>
     Dashboard
     <router-link to="/">Home</router-link>
+  <router-link to="/register">register</router-link>
   <button @click="logout">Logout</button>
 </template>
 
