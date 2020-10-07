@@ -1,41 +1,62 @@
 <template>
-  <form id="rsvp-form" @submit.prevent="saveEmail">
+  <form id="rsvp-form" ref="rsvpForm" @submit.prevent="saveEmail">
     <input type="text" class="squad" v-model="fakeEmail">
     <label for="email">Enter Your Email to RSVP</label>
     <input required type="email" autocomplete="off" v-model="trueEmail" id="email">
     <app-round-btn @click="saveEmail" class="submit" :link="false">
       <span class="material-icons">send</span>
     </app-round-btn>
-
   </form>
+
+  <AppAlert v-if="showAlert" @click="showAlert=false">
+    {{message}}
+  </AppAlert>
+
 </template>
 
 <script>
 import RoundButton from "@/components/utils/RoundButton";
 import db from "@/firebaseInit";
+import Alert from "@/components/utils/Alert";
 
 export default {
 name: "RSVP",
   components:{
-    AppRoundBtn: RoundButton
+    AppRoundBtn: RoundButton,
+    AppAlert:Alert
+  },
+  emits:{
+    rsvp:false
   },
   data(){
     return{
       fakeEmail:'',
-      trueEmail:''
+      trueEmail:'',
+      message:'',
+      showAlert:false
     }
   },
   methods:{
     saveEmail(){
       // console.log('akskk')
-      if(this.fakeEmail === "" && this.trueEmail !== ""){
+      if(this.fakeEmail === "" && this.validEmail(this.trueEmail)){
         db.collection("emails_collections").add({
           email:this.trueEmail,
           mail_sent:false
-        }).then((resp)=>{
-          console.log(resp)
+        }).then(()=>{
+          // console.log(res.id)
+          this.$refs.rsvpForm.reset()
+          localStorage.setItem('RSVP',true.toString())
+          this.$emit('rsvp',true)
         })
+      } else {
+        this.message = "Oops!! Error"
+        this.showAlert = true
       }
+    },
+    validEmail: function (email) {
+      let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
     }
   }
 }
@@ -94,10 +115,12 @@ form{
 
     label{
       margin: 20px 25px;
+      font-size: 18px;
     }
 
     input{
       height: 45px;
+      font-size: 15px;
     }
   }
 
