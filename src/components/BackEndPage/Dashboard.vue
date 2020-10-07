@@ -1,13 +1,21 @@
 <template>
     Dashboard
     <router-link to="/">Home</router-link>
+  <button @click="logout">Logout</button>
 </template>
 
 <script>
+import firebase from 'firebase/app'
+import 'firebase/auth'
+
 export default {
 name: "Dashboard",
-  created() {
-    document.querySelector('body').setAttribute('data-theme','light')
+  methods:{
+    logout(){
+      firebase.auth().signOut().then(()=>{
+        this.$router.push({name: 'Home'})
+      })
+    }
   }
 }
 </script>

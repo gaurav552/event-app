@@ -51,7 +51,8 @@ export default {
       firstUnit:'',
       lastUnit:'',
       checkRsvp:false,
-      showAlert:false
+      showAlert:false,
+      interval:null
     }
   },
   methods:{
@@ -61,7 +62,7 @@ export default {
     }
   },
   beforeCreate() {
-    setInterval(()=>{
+    this.interval = setInterval(()=>{
       let timer = countdown( null,new Date("2021/06/14"),30,2).toString()
       this.firstUnit = timer.split(" and ")[0]
       this.lastUnit = timer.split(" and ")[1]
@@ -71,7 +72,10 @@ export default {
   created() {
     document.querySelector('body').setAttribute('data-theme','green')
     this.checkRsvp  = localStorage.getItem('RSVP') === 'true'
-    // console.log(localStorage.getItem('RSVP') === 'true')
+  },
+  unmounted() {
+    clearInterval(this.interval)
+    document.querySelector('body').setAttribute('data-theme','light')
   }
 }
 </script>

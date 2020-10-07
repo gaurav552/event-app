@@ -13,13 +13,13 @@ export default {
 
 <style>
 :root{
-  --bg-frontEnd:#2C8B36;
-  --color-frontEnd:#D5D5D5;
-}
-
-[data-theme='light']{
   --bg-frontEnd:#F7F7F7;
   --color-frontEnd:#00365A;
+}
+
+[data-theme='green']{
+  --bg-frontEnd:#2C8B36;
+  --color-frontEnd:#D5D5D5;
 }
 
 *{
@@ -44,10 +44,4 @@ body{
   display: grid;
   place-items: center;
 }
-
-.grecaptcha-badge {
-  /*visibility: hidden;*/
-}
-
-
 </style>
