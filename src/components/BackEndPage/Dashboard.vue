@@ -3,6 +3,7 @@
     <router-link to="/">Home</router-link>
   <router-link to="/register">register</router-link>
   <button @click="logout">Logout</button>
+  <button @click="showId">show id</button>
 </template>
 
 <script>
@@ -16,6 +17,9 @@ name: "Dashboard",
       firebase.auth().signOut().then(()=>{
         this.$router.push({name: 'Home'})
       })
+    },
+    showId(){
+      console.log(firebase.auth().currentUser.uid)
     }
   }
 }

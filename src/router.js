@@ -6,6 +6,15 @@ import Login from "@/components/User/Login";
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import Register from "@/components/User/Register";
+import db from "@/firebaseInit";
+import UserDetails from "@/components/User/UserDetails";
+
+let admins = []
+db.collection("admin_uid").get().then(qs=>{
+    qs.forEach(doc =>{
+        admins.push(doc.data().uid)
+    })
+})
 
 const routes = [
     {
@@ -21,7 +30,12 @@ const routes = [
             if(!firebase.auth().currentUser){
                 next({path:'/login'})
             } else {
-                next()
+                if(admins.includes(firebase.auth().currentUser.uid)){
+                    next()
+                } else {
+                    next({path:'/userDetails'})
+                }
+
             }
         }
     },
@@ -31,7 +45,11 @@ const routes = [
         name:'Login',
         beforeEnter: (to, from, next) => {
             if(firebase.auth().currentUser){
-                next({path:'/dashboard'})
+                if(admins.includes(firebase.auth().currentUser.uid)){
+                    next({name:'Dashboard'})
+                } else {
+                    next({name:'UserDetails'})
+                }
             } else {
                 next()
             }
@@ -42,16 +60,26 @@ const routes = [
         component:Register,
         name:'Register',
         beforeEnter: (to, from, next) => {
-            if(!firebase.auth().currentUser){
-                next({path:'/login'})
+            if(firebase.auth().currentUser){
+                if(admins.includes(firebase.auth().currentUser.uid)){
+                    next({name:'Dashboard'})
+                } else {
+                    next({name:'UserDetails'})
+                }
             } else {
                 next()
             }
         }
     },
     {
+        path: '/userDetails',
+        component: UserDetails,
+        name:'Details',
+
+    },
+    {
         path:'/:pathMatch(.*)*',
-        redirect: {name:'home'}
+        redirect: {name:'Home'}
     }
 ]
 
