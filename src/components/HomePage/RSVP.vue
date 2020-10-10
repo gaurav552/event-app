@@ -8,22 +8,20 @@
     </app-round-btn>
   </form>
 
-  <AppAlert v-if="showAlert" @click="showAlert=false">
-    {{message}}
-  </AppAlert>
+  <AppAlert @click="dismiss" v-if="showAlert">{{message}}</AppAlert>
 
 </template>
 
 <script>
 import RoundButton from "@/components/utils/RoundButton";
-import db from "@/firebaseInit";
+// import db from "@/firebaseInit";
 import Alert from "@/components/utils/Alert";
 
 export default {
 name: "RSVP",
   components:{
     AppRoundBtn: RoundButton,
-    AppAlert:Alert
+    AppAlert:Alert,
   },
   emits:{
     rsvp:false
@@ -32,27 +30,38 @@ name: "RSVP",
     return{
       fakeEmail:'',
       trueEmail:'',
-      message:'',
-      showAlert:false
+      showAlert:false,
+      message:''
     }
   },
   methods:{
+    dismiss(){
+      this.showAlert = false
+      this.message = ''
+    },
     saveEmail(){
       // console.log('akskk')
-      if(this.fakeEmail === "" && this.validEmail(this.trueEmail)){
-        db.collection("emails_collections").add({
-          email:this.trueEmail,
-          mail_sent:false
-        }).then(()=>{
-          // console.log(res.id)
-          this.$refs.rsvpForm.reset()
-          localStorage.setItem('RSVP',true.toString())
-          this.$emit('rsvp',true)
-        })
+      // if(this.fakeEmail === "" && this.validEmail(this.trueEmail)){
+      //   db.collection("emails_collections").add({
+      //     email:this.trueEmail,
+      //     mail_sent:false
+      //   }).then(()=>{
+      //     // console.log(res.id)
+      //     this.$refs.rsvpForm.reset()
+      //     localStorage.setItem('RSVP',true.toString())
+      //     this.$emit('rsvp',true)
+      //   })
+      // } else {
+      //   this.message = "Oops!! Error"
+      //   this.showAlert = true
+      // }
+      if (this.fakeEmail === '' && this.validEmail(this.trueEmail)){
+        this.$router.push({name:'Register', query:{email:this.trueEmail}})
       } else {
-        this.message = "Oops!! Error"
         this.showAlert = true
+        this.message = 'Email Error!!'
       }
+
     },
     validEmail: function (email) {
       let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

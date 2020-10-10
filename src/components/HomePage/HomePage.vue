@@ -14,8 +14,8 @@
 
     <app-center-box :first-unit="firstUnit" :last-unit="lastUnit"></app-center-box>
 
-    <div class="rsvp" v-if="!checkRsvp">
-      <app-r-s-v-p @rsvp="updater"></app-r-s-v-p>
+    <div class="rsvp">
+      <app-r-s-v-p></app-r-s-v-p>
     </div>
   </main>
 
@@ -25,10 +25,6 @@
       </span>
   </app-round-btn>
 
-  <AppAlert v-if="showAlert" @click="showAlert=false">
-    RSVP Added
-  </AppAlert>
-
 </template>
 
 <script>
@@ -36,7 +32,6 @@ import RoundButton from "@/components/utils/RoundButton";
 import RSVP from "@/components/HomePage/RSVP";
 import CenterBox from "@/components/HomePage/CenterBox";
 import countdown from "countdown";
-import Alert from "@/components/utils/Alert";
 
 export default {
   name: "HomePage",
@@ -44,34 +39,27 @@ export default {
     AppRoundBtn: RoundButton,
     AppRSVP:RSVP,
     AppCenterBox: CenterBox,
-    AppAlert:Alert
   },
   data(){
     return{
       firstUnit:'',
       lastUnit:'',
-      checkRsvp:false,
       showAlert:false,
       interval:null
     }
   },
   methods:{
-    updater(e){
-      this.checkRsvp = e
-      this.showAlert = true
-    }
+
   },
-  beforeCreate() {
+  beforeMount() {
     this.interval = setInterval(()=>{
       let timer = countdown( null,new Date("2021/06/14"),30,2).toString()
       this.firstUnit = timer.split(" and ")[0]
       this.lastUnit = timer.split(" and ")[1]
     },1000)
-
   },
   created() {
     document.querySelector('body').setAttribute('data-theme','green')
-    this.checkRsvp  = localStorage.getItem('RSVP') === 'true'
   },
   unmounted() {
     clearInterval(this.interval)

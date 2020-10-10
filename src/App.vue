@@ -12,6 +12,7 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 :root{
   --bg-frontEnd:#F7F7F7;
   --color-frontEnd:#00365A;
@@ -37,6 +38,10 @@ body{
   position: relative;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+.bg-login{
+  background-color: #eee;
 }
 
 #app{
