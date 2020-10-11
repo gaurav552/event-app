@@ -5,8 +5,11 @@
   <div class="card-body">
 
     <div class="details">
-      <span>Name: {{ userData.name.first + " " + userData.name.last }}</span>
+      <span>Name: {{ fullName }}</span>
       <span>Email: {{ userData.email }}</span>
+      <span>Phone: {{ userData.phone }}</span>
+      <span>Address: <br> {{ fullAddress }}</span>
+
       <span>Coming as: {{ userData.user_category }}</span>
       <hr>
       <span>{{ userData.total_guests === 0 ? 'You have no Guests with you' : 'You have ' + userData.total_guests + ' guests' }}</span>
@@ -21,7 +24,6 @@
         <br>
         <template v-if="userData.user_category === 'volunteer'">Includes $100 volunteer discount</template>
       </span>
-
       <hr>
       <div ref="paypal"></div>
     </div>
@@ -33,16 +35,28 @@
 
 <script>
 import db from "@/firebaseInit"
+import firebase from 'firebase/app'
+import 'firebase/auth'
+
 export default {
   name: "PaymentForm",
   props: ['userData'],
   data(){
     return{
-      paidFor:false
+      paidFor:false,
+      user_id:''
     }
   },
   emits: {
     'go-to': null
+  },
+  computed:{
+    fullAddress(){
+      return this.userData.address.street+", "+this.userData.address.city+", "+this.userData.address.state+", "+this.userData.address.country
+    },
+    fullName(){
+      return this.userData.name.first+" "+this.userData.name.last
+    }
   },
   methods: {
     setLoaded() {
@@ -64,9 +78,33 @@ export default {
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
           // this.data;
-          db.collection()
+
+          firebase.auth().createUserWithEmailAndPassword(this.userData.email, this.userData.password).then(()=>{
+            db.collection('registered_users').add({
+              // RU_id:res.uid.toString,
+              email:this.userData.email,
+              type:this.userData.user_category,
+              name:this.userData.name
+            }).then((res)=>{
+              res.collection('sensitive_details').add({
+                phone:this.userData.phone,
+                address:this.userData.address,
+                guests:this.userData.guests ? this.userData.guests : ''
+              })
+              res.collection('payment_details').add({
+                payer_id:order.payer.payer_id,
+                payment_id:order.id,
+                payment_time:order.create_time,
+                payment_total:order.purchase_units[0].amount,
+                payment_status:order.status
+              })
+            })
+          }, err=>{
+            console.log(err)
+          })
+
           this.paidFor = true;
-          console.log(order);
+          await this.$router.push('/orderComplete')
         },
         onError: err => {
           console.log(err);
@@ -81,12 +119,12 @@ export default {
     const script = document.createElement('script')
     script.id = 'pay'
     script.src = 'https://www.paypal.com/sdk/js?client-id=AQuC9qoL5DicQSJleF4mCGP3vWGr1kpdITCu0RgdfWrP5U4butc6qVOErQ_MBZoGRdGj5UJX1TLrB6B0&currency=CAD'
-    script.addEventListener('load', this.setLoaded)
+    script.addEventListener('load', this.setLoaded,true)
     document.body.appendChild(script)
   },
   deactivated() {
     document.getElementById('pay').remove()
-    this.$refs.paypal.innerHTML = ''
+    this.$refs.paypal ? this.$refs.paypal.innerHTML = '':''
   }
 }
 </script>
@@ -136,6 +174,7 @@ button:active, button:focus{
 
 span{
   padding: 5px 0;
+  line-height: 25px;
 }
 
 li{
@@ -166,7 +205,9 @@ hr{
 }
 
 .cost{
+  margin-top: 15px;
   font-size: 30px;
+  color: #f44336;
 }
 
 </style>

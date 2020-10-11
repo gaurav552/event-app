@@ -10,6 +10,14 @@
       <label><span>Last Name</span><input v-model="name.last" required type="text"></label>
       <label><span>Password</span><input v-model="password" autocomplete="off" required type="password"></label>
       <hr>
+
+      <label><span>Phone</span><input v-model="phone" required type="text"></label>
+      <label><span>Street Address</span><input v-model="address.street" required type="text"></label>
+      <label><span>City</span><input v-model="address.city" required type="text"></label>
+      <label><span>State</span><input v-model="address.state" required type="text"></label>
+      <label><span>Country</span><input v-model="address.country" required type="text"></label>
+      <hr>
+
       <label>
         <span>What will you be attending the event as?</span>
         <select id="" v-model="user_category" class="select-css" name="" required>
@@ -49,6 +57,13 @@ export default {
       name: {
         first: '',
         last: ''
+      },
+      phone:'',
+      address: {
+        street:'',
+        city:'',
+        state:'',
+        country:''
       },
       guest_names: [],
       password: '',
@@ -105,6 +120,8 @@ export default {
             name:this.name,
             email:this.email,
             password:this.password,
+            phone:this.phone,
+            address: this.address,
             user_category:this.user_category,
             total_price:price,
             total_guests:this.guests,

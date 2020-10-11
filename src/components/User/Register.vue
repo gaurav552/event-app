@@ -19,7 +19,7 @@ export default {
 name: "Register",
   components:{
     RegistrationForm:RegistrationForm,
-    PaymentForm:PaymentForm
+    PaymentForm:PaymentForm,
   },
   data(){
     return{

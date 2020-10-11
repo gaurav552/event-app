@@ -8,6 +8,7 @@ import 'firebase/auth'
 import Register from "@/components/User/Register";
 import db from "@/firebaseInit";
 import UserDetails from "@/components/User/UserDetails";
+import OrderComplete from "@/components/User/OrderComplete";
 
 let admins = []
 db.collection("admin_uid").get().then(qs=>{
@@ -59,22 +60,28 @@ const routes = [
         path:'/register',
         component:Register,
         name:'Register',
-        beforeEnter: (to, from, next) => {
-            if(firebase.auth().currentUser){
-                if(admins.includes(firebase.auth().currentUser.uid)){
-                    next({name:'Dashboard'})
-                } else {
-                    next({name:'UserDetails'})
-                }
-            } else {
-                next()
-            }
-        }
+        // beforeEnter: (to, from, next) => {
+        //     if(firebase.auth().currentUser){
+        //         if(admins.includes(firebase.auth().currentUser.uid)){
+        //             next({name:'Dashboard'})
+        //         } else {
+        //             next({name:'UserDetails'})
+        //         }
+        //     } else {
+        //         next()
+        //     }
+        // }
     },
     {
         path: '/userDetails',
         component: UserDetails,
         name:'Details',
+
+    },
+    {
+        path: '/orderComplete',
+        component: OrderComplete,
+        name:'OrderComplete',
 
     },
     {

@@ -11,17 +11,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94726144-2546-49a6-8c69-af446c07ab3b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/User/PaymentForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/User/RegistrationForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/User/OrderComplete.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomePage/HomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage/HomePage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomePage/RSVP.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage/RSVP.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User/Card.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/User/PaymentForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/PaymentForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/User/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/Register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebaseInit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebaseInit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/User/RegistrationForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/RegistrationForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +97,7 @@
       <workItem from="1602175298113" duration="13218000" />
       <workItem from="1602216286181" duration="61000" />
       <workItem from="1602290348261" duration="17628000" />
+      <workItem from="1602393615972" duration="16984000" />
     </task>
     <servers />
   </component>
