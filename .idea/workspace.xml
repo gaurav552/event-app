@@ -11,17 +11,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94726144-2546-49a6-8c69-af446c07ab3b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/User/UserDetails/Header.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/User/UserDetails/SideBar.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/User/UserDetails/UserDashboard.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/utils/SignOutButton.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/User/UserDetails/SpecialGuests.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/User/UserDetails/UserEventDetails.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/User/UserDetails/UserInfo.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/User/UserDetails/UserPaymentDtails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomePage/HomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage/HomePage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/Register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User/UserDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/UserDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebaseInit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebaseInit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/User/UserDetails/SideBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/UserDetails/SideBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/User/UserDetails/UserDashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/UserDetails/UserDashboard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -10,6 +10,10 @@ import db from "@/firebaseInit";
 import UserDetails from "@/components/User/UserDetails";
 import OrderComplete from "@/components/User/OrderComplete";
 import UserDashboard from "@/components/User/UserDetails/UserDashboard";
+import UserPaymentDtails from "@/components/User/UserDetails/UserPaymentDtails";
+import SpecialGuests from "@/components/User/UserDetails/SpecialGuests";
+import UserEventDetails from "@/components/User/UserDetails/UserEventDetails";
+import UserInfo from "@/components/User/UserDetails/UserInfo";
 
 let admins = []
 db.collection("admin_uid").get().then(qs => {
@@ -33,7 +37,7 @@ const routes = [
                 if (admins.includes(firebase.auth().currentUser.uid)) {
                     next()
                 } else {
-                    next({name: 'Details'})
+                    next({path: '/userDetails'})
                 }
             } else {
                 next({name: 'Login'})
@@ -50,7 +54,7 @@ const routes = [
                     if (admins.includes(firebase.auth().currentUser.uid)) {
                         next({name: 'Dashboard'})
                     } else {
-                        next({name: 'Details'})
+                        next({path: '/userDetails'})
                     }
                 } else {
                     next()
@@ -71,12 +75,27 @@ const routes = [
     },
     {
         path: '/userDetails',
-        component:UserDetails,
-        name: 'Details',
-        children:[
+        component: UserDetails,
+        children: [
             {
-                path:'',
-                component:UserDashboard
+                path: '',
+                component: UserDashboard
+            },
+            {
+                path: 'userInfo',
+                component: UserInfo
+            },
+            {
+                path: 'eventDetails',
+                component: UserEventDetails
+            },
+            {
+                path: 'guests',
+                component: SpecialGuests
+            },
+            {
+                path: 'payments',
+                component: UserPaymentDtails
             }
         ],
         beforeEnter: (to, from, next) => {

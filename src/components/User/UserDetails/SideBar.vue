@@ -2,34 +2,44 @@
   <nav>
     <ul>
       <li>
-        <span class="material-icons">
+        <router-link to="/userDetails">
+          <span class="material-icons">
           dashboard
         </span>
-        Dashboard
+          Dashboard
+        </router-link>
       </li>
       <li>
-        <span class="material-icons">
-          calendar_today
-        </span>
-        Event Details
+        <router-link to="/userDetails/eventDetails">
+          <span class="material-icons">
+            calendar_today
+          </span>
+          Event Details
+        </router-link>
       </li>
       <li>
-        <span class="material-icons">
-          portrait
-        </span>
-        User Details
+        <router-link to="/userDetails/userInfo">
+          <span class="material-icons">
+            portrait
+          </span>
+          User Details
+        </router-link>
       </li>
       <li>
+        <router-link to="/userDetails/guests">
         <span class="material-icons">
           face
         </span>
-        Special Guests
+          Special Guests
+        </router-link>
       </li>
       <li>
+        <router-link to="/userDetails/payments">
         <span class="material-icons">
           payments
         </span>
-        Payment Details
+          Payment Details
+        </router-link>
       </li>
     </ul>
   </nav>
@@ -37,34 +47,42 @@
 
 <script>
 export default {
-name: "SideBar"
+  name: "SideBar"
 }
 </script>
 
 <style scoped>
-  nav{
-    width: 180px;
-    height: 100%;
-    background-color: white;
-    box-shadow: 0 3px 30px rgba(0,0,0,.1), 0 3px 20px rgba(0,0,0,.1);;
-  }
+nav {
+  width: 180px;
+  height: 100%;
+  background-color: white;
+  box-shadow: 0 3px 30px rgba(0, 0, 0, .1), 0 3px 20px rgba(0, 0, 0, .1);;
+}
 
-  ul{
-    text-align: center;
-  }
+ul {
+  text-align: center;
+}
 
-  li{
-    padding: 20px;
-    display: grid;
-    place-items: center;
-    border-bottom: 1px solid #f4f4f4;
-  }
-  li span{
-    margin: 10px;
-  }
-  li:hover{
-    background: #f1f1f1;
-  }
+li {
+  padding: 20px;
+  display: grid;
+  place-items: center;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+li span {
+  margin: 10px;
+}
+
+li:hover {
+  background: #f1f1f1;
+}
+
+a {
+  text-decoration: none;
+  display: grid;
+  place-items: center;
+}
 
 
 </style>

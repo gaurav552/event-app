@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    apple
+    <router-link to="/userDetails/payments">Payment</router-link>
   </div>
 </template>
 
