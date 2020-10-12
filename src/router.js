@@ -1,4 +1,4 @@
-import { createWebHistory, createRouter } from "vue-router";
+import {createWebHistory, createRouter} from "vue-router";
 import HomePage from "@/components/HomePage/HomePage";
 import Dashboard from "@/components/BackEndPage/Dashboard";
 import Login from "@/components/User/Login";
@@ -9,90 +9,104 @@ import Register from "@/components/User/Register";
 import db from "@/firebaseInit";
 import UserDetails from "@/components/User/UserDetails";
 import OrderComplete from "@/components/User/OrderComplete";
+import UserDashboard from "@/components/User/UserDetails/UserDashboard";
 
 let admins = []
-db.collection("admin_uid").get().then(qs=>{
-    qs.forEach(doc =>{
+db.collection("admin_uid").get().then(qs => {
+    qs.forEach(doc => {
         admins.push(doc.data().uid)
     })
 })
 
 const routes = [
     {
-        path:'/',
-        component:HomePage,
-        name:'Home'
+        path: '/',
+        component: HomePage,
+        name: 'Home'
     },
     {
-        path:'/dashboard',
-        component:Dashboard,
-        name:'Dashboard',
+        path: '/dashboard',
+        component: Dashboard,
+        name: 'Dashboard',
         beforeEnter: (to, from, next) => {
-            if(!firebase.auth().currentUser){
-                next({path:'/login'})
-            } else {
-                if(admins.includes(firebase.auth().currentUser.uid)){
+            if (firebase.auth().currentUser) {
+                if (admins.includes(firebase.auth().currentUser.uid)) {
                     next()
                 } else {
-                    next({path:'/userDetails'})
-                }
-
-            }
-        }
-    },
-    {
-        path:'/login',
-        component:Login,
-        name:'Login',
-        beforeEnter: (to, from, next) => {
-            if(firebase.auth().currentUser){
-                if(admins.includes(firebase.auth().currentUser.uid)){
-                    next({name:'Dashboard'})
-                } else {
-                    next({name:'UserDetails'})
+                    next({name: 'Details'})
                 }
             } else {
-                next()
+                next({name: 'Login'})
             }
         }
     },
     {
-        path:'/register',
-        component:Register,
-        name:'Register',
-        // beforeEnter: (to, from, next) => {
-        //     if(firebase.auth().currentUser){
-        //         if(admins.includes(firebase.auth().currentUser.uid)){
-        //             next({name:'Dashboard'})
-        //         } else {
-        //             next({name:'UserDetails'})
-        //         }
-        //     } else {
-        //         next()
-        //     }
-        // }
+        path: '/login',
+        component: Login,
+        name: 'Login',
+        beforeEnter: (to, from, next) => {
+            setTimeout(() => {
+                if (firebase.auth().currentUser) {
+                    if (admins.includes(firebase.auth().currentUser.uid)) {
+                        next({name: 'Dashboard'})
+                    } else {
+                        next({name: 'Details'})
+                    }
+                } else {
+                    next()
+                }
+            }, 500)
+
+        }
+    },
+    {
+        path: '/register',
+        component: Register,
+        name: 'Register',
+        beforeEnter: (to, from, next) => {
+            firebase.auth().signOut().then(() => {
+                next()
+            })
+        }
     },
     {
         path: '/userDetails',
-        component: UserDetails,
-        name:'Details',
+        component:UserDetails,
+        name: 'Details',
+        children:[
+            {
+                path:'',
+                component:UserDashboard
+            }
+        ],
+        beforeEnter: (to, from, next) => {
+            if (firebase.auth().currentUser) {
+                if (admins.includes(firebase.auth().currentUser.uid)) {
+                    next({name: 'Dashboard'})
+                } else {
+                    next()
+                }
+            } else {
+                next({name: 'Login'})
+            }
+        }
 
     },
     {
         path: '/orderComplete',
         component: OrderComplete,
-        name:'OrderComplete',
+        name: 'OrderComplete',
 
     },
     {
-        path:'/:pathMatch(.*)*',
-        redirect: {name:'Home'}
+        path: '/:pathMatch(.*)*',
+        redirect: {name: 'Home'}
     }
 ]
 
 const router = createRouter(
     {
-        history:createWebHistory(),
+        history: createWebHistory(),
         routes
     }
 )

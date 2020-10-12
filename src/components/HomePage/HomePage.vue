@@ -63,7 +63,7 @@ export default {
   },
   unmounted() {
     clearInterval(this.interval)
-    document.querySelector('body').setAttribute('data-theme','light')
+    //
   }
 }
 </script>

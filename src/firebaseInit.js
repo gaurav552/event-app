@@ -4,8 +4,9 @@ import firebaseConfig from "./firebaseConfig";
 import 'firebase/auth'
 
 const firebaseApp = firebase.initializeApp(firebaseConfig)
-firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-    .then(
-        // ()=>console.log("now persistent")
-    )
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(function() {
+    })
+    .catch(function() {
+    });
 export default firebaseApp.firestore()

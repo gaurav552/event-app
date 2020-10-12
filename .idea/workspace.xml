@@ -11,11 +11,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94726144-2546-49a6-8c69-af446c07ab3b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/User/OrderComplete.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/User/UserDetails/Header.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/User/UserDetails/SideBar.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/User/UserDetails/UserDashboard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/utils/SignOutButton.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User/PaymentForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/PaymentForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HomePage/HomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage/HomePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/User/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/Login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/User/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/Register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User/RegistrationForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/RegistrationForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/User/UserDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/UserDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebaseInit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebaseInit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,6 +104,7 @@
       <workItem from="1602216286181" duration="61000" />
       <workItem from="1602290348261" duration="17628000" />
       <workItem from="1602393615972" duration="16984000" />
+      <workItem from="1602469650254" duration="13311000" />
     </task>
     <servers />
   </component>
@@ -124,22 +131,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="824" y="398" key="#ESLint/0.0.1920.1040@0.0.1920.1040" timestamp="1601945768369" />
-    <state width="1899" height="191" key="GridCell.Tab.0.bottom" timestamp="1602312572642">
+    <state width="1899" height="191" key="GridCell.Tab.0.bottom" timestamp="1602483434606">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="191" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602312572642" />
-    <state width="1899" height="191" key="GridCell.Tab.0.center" timestamp="1602312572641">
+    <state width="1899" height="191" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602483434606" />
+    <state width="1899" height="191" key="GridCell.Tab.0.center" timestamp="1602483434605">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="191" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602312572641" />
-    <state width="1899" height="191" key="GridCell.Tab.0.left" timestamp="1602312572641">
+    <state width="1899" height="191" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602483434605" />
+    <state width="1899" height="191" key="GridCell.Tab.0.left" timestamp="1602483434605">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="191" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602312572641" />
-    <state width="1899" height="191" key="GridCell.Tab.0.right" timestamp="1602312572642">
+    <state width="1899" height="191" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602483434605" />
+    <state width="1899" height="191" key="GridCell.Tab.0.right" timestamp="1602483434605">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="191" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602312572642" />
+    <state width="1899" height="191" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602483434605" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1602304018793">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

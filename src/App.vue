@@ -23,6 +23,11 @@ export default {
   --color-frontEnd:#D5D5D5;
 }
 
+[data-theme='dashboard']{
+  --bg-frontEnd:#f8f8f8;
+  --color-frontEnd:#212121;
+}
+
 *{
   margin: 0;
   padding: 0;
