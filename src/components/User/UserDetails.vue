@@ -75,7 +75,7 @@ main{
 
 @media only screen and (max-width: 700px)  {
   .crumb{
-    padding: 10px 0 0 0;
+    padding: 10px 0;
     margin-left: 20px;
   }
 

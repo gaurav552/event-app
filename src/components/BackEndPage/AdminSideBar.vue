@@ -57,7 +57,8 @@ nav {
   width: 180px;
   height: 100%;
   background-color: white;
-  box-shadow: 0 3px 30px rgba(0, 0, 0, .1), 0 3px 20px rgba(0, 0, 0, .1);;
+  box-shadow: 0 3px 30px rgba(0, 0, 0, .1), 0 3px 20px rgba(0, 0, 0, .1);
+  overflow-y: auto;
 }
 
 ul {

@@ -124,7 +124,7 @@ h3{
   }
   .counter .box{
     font-size: 15px;
-    width: 90px;
+    width: 110px;
     height: 50px;
     margin: 15px;
   }

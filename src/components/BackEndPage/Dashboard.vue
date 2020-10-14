@@ -46,10 +46,6 @@ name: "Dashboard",
   font-family: 'Quicksand', sans-serif;
 }
 
-#app{
-  display: block!important;
-}
-
 main{
   align-self: flex-end;
   display: flex;

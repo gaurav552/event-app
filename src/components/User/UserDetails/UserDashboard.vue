@@ -133,7 +133,7 @@ name: "UserDashboard",
     padding: 30px;
     background-color: white;
     border-radius: 25px;
-    box-shadow: 0 1px 15px rgba(0,0,0,.04), 0 1px 6px rgba(0,0,0,.04);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
   }
 
   .card h1{
@@ -163,6 +163,7 @@ name: "UserDashboard",
   }
 
   .money{
+    margin-top: 40px;
     font-size: clamp(25px, 3vw, 40px);
     color: #f44336;
   }
@@ -179,9 +180,7 @@ name: "UserDashboard",
       flex: 1 0 calc(100% - 20px);
       margin: 10px;
       padding: 20px;
-      background-color: white;
       border-radius: 15px;
-      box-shadow: 0 1px 15px rgba(0,0,0,.04), 0 1px 6px rgba(0,0,0,.04);
     }
   }
 </style>
