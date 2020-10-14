@@ -1,5 +1,7 @@
 <template>
 
+  <img class="blob" :style="rand()" width="500" height="500" v-for="i in Math.floor(Math.random()*4+3)" :key="i" :src="'/blob'+i+'.svg'" alt="">
+
   <app-round-btn :link="true" :path="'/dashboard'" class="loginBtn">
       <span class="material-icons">
         login
@@ -49,7 +51,14 @@ export default {
     }
   },
   methods:{
-
+    rand(){
+      return {
+        top: (Math.random()*70).toString()+'%',
+        left: (Math.random()*80).toString()+'%',
+      }
+    }
+  },
+  computed:{
   },
   beforeMount() {
     this.interval = setInterval(()=>{
@@ -63,13 +72,14 @@ export default {
   },
   unmounted() {
     clearInterval(this.interval)
-    document.querySelector('body').setAttribute('data-theme','light')
+    //
   }
 }
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 
 .material-icons {
   font-size: 20px;
@@ -115,6 +125,13 @@ main .heading h1{
 .rsvp{
   width: 100%;
 }
+
+.blob{
+  position: fixed;
+  z-index: -1;
+  opacity: .5;
+}
+
 
 @media only screen and (max-width: 700px) {
   .loginBtn {

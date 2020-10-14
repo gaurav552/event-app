@@ -8,7 +8,7 @@
     </span>
     <div class="buttons">
       <router-link to="/"><i class="material-icons">home</i>Back Home</router-link>
-      <router-link to="/"><i class="material-icons">list</i>View Details</router-link>
+      <router-link to="/userDetails"><i class="material-icons">list</i>View Details</router-link>
     </div>
   </div>
 </template>

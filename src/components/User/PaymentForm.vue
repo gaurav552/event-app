@@ -77,11 +77,10 @@ export default {
         },
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
-          // this.data;
 
-          firebase.auth().createUserWithEmailAndPassword(this.userData.email, this.userData.password).then(()=>{
+          firebase.auth().createUserWithEmailAndPassword(this.userData.email, this.userData.password).then((res)=>{
             db.collection('registered_users').add({
-              // RU_id:res.uid.toString,
+              uid:res.user.uid,
               email:this.userData.email,
               type:this.userData.user_category,
               name:this.userData.name

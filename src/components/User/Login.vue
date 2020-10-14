@@ -39,6 +39,9 @@ name: "Login",
         })
       }
     }
+  },
+  beforeMount() {
+    document.querySelector('body').setAttribute('data-theme','light')
   }
 }
 </script>

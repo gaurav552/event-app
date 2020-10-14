@@ -48,6 +48,9 @@ name: "Register",
       // console.log(e)
     }
   },
+  beforeMount() {
+    document.querySelector('body').setAttribute('data-theme','light')
+  }
 }
 </script>
 
