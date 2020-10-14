@@ -1,30 +1,85 @@
 <template>
-    Dashboard
-    <router-link to="/">Home</router-link>
-  <router-link to="/register">register</router-link>
-  <button @click="logout">Logout</button>
-  <button @click="showId">show id</button>
+  <div class="adminDashboard">
+    <AppHeader>
+      <template v-slot:title>PFC Admin Area</template>
+      <template v-slot:user>Hello, {{UName}}</template>
+    </AppHeader>
+    <main>
+      <SideBar></SideBar>
+      <div class="content">
+        <div class="crumb">Dashboard</div>
+        <router-view></router-view>
+      </div>
+    </main>
+  </div>
 </template>
 
 <script>
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import AdminSideBar from "@/components/BackEndPage/AdminSideBar";
+import AdminHeader from "@/components/utils/Headers";
 
 export default {
 name: "Dashboard",
-  methods:{
-    logout(){
-      firebase.auth().signOut().then(()=>{
-        this.$router.push({name: 'Home'})
-      })
-    },
-    showId(){
-      console.log(firebase.auth().currentUser.uid)
+  components:{
+    SideBar:AdminSideBar,
+    AppHeader:AdminHeader
+  },
+  data(){
+    return{
+      UName: firebase.auth().currentUser.displayName
     }
-  }
+  },
+  mounted() {
+    document.querySelector('body').setAttribute('data-theme','dashboard')
+  },
 }
 </script>
 
 <style scoped>
+.adminDashboard{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Quicksand', sans-serif;
+}
 
+#app{
+  display: block!important;
+}
+
+main{
+  align-self: flex-end;
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 120px);
+  overflow-y: hidden;
+}
+
+.crumb{
+  padding: 20px 0;
+  margin-left: 20px;
+}
+
+.content{
+  padding: 40px;
+  width: 100%;
+  overflow-y: auto;
+}
+
+@media only screen and (max-width: 700px)  {
+  .crumb{
+    padding: 10px 0 0 0;
+    margin-left: 20px;
+  }
+
+  .content{
+    padding: 10px;
+  }
+  main{
+    height: calc(100vh - 80px);
+  }
+}
 </style>

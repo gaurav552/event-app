@@ -138,15 +138,15 @@ name: "UserDashboard",
 
   .card h1{
     text-align: center;
-    font-size: 30px;
+    font-size: clamp(20px,3vw,30px);
     margin-bottom: 20px;
     color: #f44336;
   }
 
   p{
     margin: 10px auto;
-    font-size: 18px;
-    line-height: 30px;
+    font-size: clamp(14px,3vw,18px);
+    line-height: clamp(20px, 3vw, 30px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -158,12 +158,12 @@ name: "UserDashboard",
 
   .subtext{
     margin-top: 30px;
-    font-size: 16px;
+    font-size: clamp(13px, 3vw, 16px);
     color: #888;
   }
 
   .money{
-    font-size: 40px;
+    font-size: clamp(25px, 3vw, 40px);
     color: #f44336;
   }
   .status{
@@ -172,5 +172,16 @@ name: "UserDashboard",
 
   .ignore{
     display: block;
+  }
+
+  @media only screen and (max-width: 700px) {
+    .card{
+      flex: 1 0 calc(100% - 20px);
+      margin: 10px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 1px 15px rgba(0,0,0,.04), 0 1px 6px rgba(0,0,0,.04);
+    }
   }
 </style>

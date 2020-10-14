@@ -98,6 +98,11 @@ export default {
                 payment_status:order.status
               })
             })
+
+            const user = firebase.auth().currentUser;
+            return user.updateProfile({
+              displayName: this.userData.name.first
+            })
           }, err=>{
             console.log(err)
           })
@@ -196,7 +201,7 @@ hr{
   place-items: center;
 }
 .edit{
-  padding: 15px;
+  padding: 25px;
   background-color: #f44336;
   border-radius: 10px;
   color: white;
@@ -207,6 +212,24 @@ hr{
   margin-top: 15px;
   font-size: 30px;
   color: #f44336;
+}
+
+@media only screen and (max-width: 700px){
+  .card-body{
+    padding: 20px;
+  }
+
+  .card-header{
+    padding: 20px;
+  }
+
+  span{
+    line-height: 20px;
+    font-size: 14px;
+  }
+  .edit{
+    padding: 10px 15px;
+  }
 }
 
 </style>

@@ -37,12 +37,12 @@ export default {
 
 body{
   background-color: var(--bg-frontEnd);
+  min-height: 600px;
   height: 100vh;
-  min-height: 720px;
-  /*min-width: 475px;*/
   position: relative;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
 }
 
 .bg-login{
@@ -53,6 +53,12 @@ body{
   height: 100%;
   display: grid;
   place-items: center;
+  align-items: baseline;
+}
+
+a{
+  text-decoration: none;
+  color: #00365A;
 }
 
 </style>

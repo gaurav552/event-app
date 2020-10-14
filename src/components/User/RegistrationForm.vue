@@ -39,7 +39,8 @@
   </div>
   <div class="card-footer">
     <span>Total Cost: {{ total_price }}</span>
-    <button class="submit" @click="$refs.submit_btn.click()">Proceed to Payment</button>
+    <button class="submit big_submit" @click="$refs.submit_btn.click()">Proceed to Payment</button>
+    <button class="submit small_submit" @click="$refs.submit_btn.click()"><span class="material-icons">arrow_forward</span></button>
   </div>
 </template>
 
@@ -227,6 +228,10 @@ input{
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
+.small_submit{
+  display: none;
+}
+
 .select-css {
   display: block;
   font-size: 16px;
@@ -274,13 +279,46 @@ input:hover {
 input:focus {
   border-color: #aaa;
   box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
-  box-shadow: 0 0 0 3px -moz-mac-focusring;
   color: #222;
   outline: none;
 }
 
 .submit:active, .submit:focus{
   color: black;
+}
+
+@media only screen and (max-width: 700px){
+
+  .small_submit{
+    display: grid;
+    place-items: center;
+    height: 40px;
+    padding: 0;
+    width: 40px;
+    border-radius: 10px;
+  }
+  .big_submit{
+    display: none;
+  }
+  .card-header{
+    padding: 20px;
+    border-radius: 15px 15px 0 0;
+  }
+
+  .card-body{
+    padding: 15px 25px;
+  }
+
+  input,select{
+    height: 35px;
+    font-size: 16px;
+  }
+
+  .card-footer{
+    padding: 10px 30px;
+  }
+
+
 }
 
 </style>

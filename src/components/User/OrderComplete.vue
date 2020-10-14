@@ -40,19 +40,20 @@ name: "OrderComplete",
   margin: 20px;
   padding: 60px 40px;
   justify-content: space-between;
+  align-self: center;
 }
 
 .heading{
-  font-size: clamp(25px,3vw,30px);
+  font-size: clamp(23px,3vw,30px);
   color: white;
   font-weight: 600;
   margin-bottom: 40px;
 }
 
 span{
-  font-size: clamp(16px,3vw,20px);
+  font-size: clamp(15px,3vw,20px);
   color: white;
-  line-height: 30px;
+  line-height: clamp(20px,3vw,30px);
 }
 
 .buttons{
@@ -84,13 +85,13 @@ a:active,a:focus{
 
 @media only screen and (max-width: 700px){
   .card{
-    padding: 40px 20px;
+    padding: 30px 20px;
   }
   .buttons{
     flex-direction: column;
   }
   a{
-    font-size: 15px;
+    font-size: 14px;
     margin: 10px auto;
     padding: 10px;
   }
@@ -98,7 +99,7 @@ a:active,a:focus{
     padding-right: 5px;
   }
   a i{
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 

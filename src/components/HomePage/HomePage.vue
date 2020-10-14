@@ -1,6 +1,9 @@
 <template>
 
-  <img class="blob" :style="rand()" width="500" height="500" v-for="i in Math.floor(Math.random()*4+3)" :key="i" :src="'/blob'+i+'.svg'" alt="">
+  <img class="blob" height="700" style="left: 3%;top: 60%" :src="rand()" alt="">
+  <img class="blob" height="400" style="left: 39%;top:36%" :src="rand()" alt="">
+  <img class="blob" height="700" style="left: 0;top:-36%" :src="rand()" alt="">
+  <img class="blob" height="700" style="left: 70%;top:-36%" :src="rand()" alt="">
 
   <app-round-btn :link="true" :path="'/dashboard'" class="loginBtn">
       <span class="material-icons">
@@ -52,17 +55,14 @@ export default {
   },
   methods:{
     rand(){
-      return {
-        top: (Math.random()*70).toString()+'%',
-        left: (Math.random()*80).toString()+'%',
-      }
+      return '/blob'+Math.floor((Math.random()*6+1))+'.svg'
     }
   },
   computed:{
   },
   beforeMount() {
     this.interval = setInterval(()=>{
-      let timer = countdown( null,new Date("2021/06/14"),30,2).toString()
+      let timer = countdown( null,new Date("2021/03/14"),20,2).toString()
       this.firstUnit = timer.split(" and ")[0]
       this.lastUnit = timer.split(" and ")[1]
     },1000)
@@ -114,12 +114,12 @@ main .heading{
 }
 
 main .heading h3{
-  font-size: clamp(20px, 2.5vw, 35px);
+  font-size: clamp(18px, 2.5vw, 35px);
   margin: 10px auto;
 }
 
 main .heading h1{
-  font-size: clamp(30px, 5vw, 60px);
+  font-size: clamp(25px, 5vw, 60px);
 }
 
 .rsvp{
@@ -136,17 +136,21 @@ main .heading h1{
 @media only screen and (max-width: 700px) {
   .loginBtn {
     top: revert;
-    bottom: 30px;
-    left: 30px;
+    bottom: 20px;
+    left: 20px;
   }
 
   .infoBtn {
-    bottom: 30px;
-    right: 30px;
+    bottom: 20px;
+    right: 20px;
   }
 
   .material-icons {
     font-size: 16px;
+  }
+
+  main .heading{
+    margin-bottom: 30px;
   }
 }
 

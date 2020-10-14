@@ -76,11 +76,13 @@ button:active, button:focus{
   display: flex;
   flex-direction: column;
   width: min(40%, 450px);
+  min-width: 300px;
   padding: 0;
   border-radius: 25px;
   background-color: white;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
   font-family: 'Quicksand', sans-serif;
+  align-self: center;
 }
 
 .card-header{
@@ -134,6 +136,41 @@ input:focus{
   background-color: #f44336;
   color: white;
   font-size: 18px;
+}
+
+@media only screen and (max-width: 700px){
+
+  .home{
+    margin: 20px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .card-header{
+    padding: 20px;
+    border-radius: 15px 15px 0 0;
+  }
+
+  .card-body{
+    padding: 15px 25px;
+  }
+
+  input{
+    height: 30px;
+    font-size: 16px;
+  }
+
+  .submit{
+    height: 40px;
+    border-radius: 10px;
+    width: 100px;
+    margin: 10px auto;
+    align-self: center;
+    background-color: #f44336;
+    color: white;
+    font-size: 14px;
+  }
+
 }
 
 

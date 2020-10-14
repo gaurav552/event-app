@@ -1,6 +1,9 @@
 <template>
   <div class="userDetails">
-    <AppHeader :Name="UName"></AppHeader>
+    <AppHeader>
+      <template v-slot:title>PFC</template>
+      <template v-slot:user>Hello, {{ UName}}</template>
+    </AppHeader>
     <main>
       <SideBar></SideBar>
       <div class="content">
@@ -14,40 +17,29 @@
 <script>
 import firebase from 'firebase/app'
 import 'firebase/auth'
-import Header from "@/components/User/UserDetails/Header";
 import SideBar from "@/components/User/UserDetails/SideBar";
-import db from "@/firebaseInit";
+import Headers from "@/components/utils/Headers";
 
 
 
 export default {
 name: "userDetails",
   components:{
-    AppHeader:Header,
+    AppHeader:Headers,
     SideBar:SideBar,
   },
   data(){
     return{
-      UName:''
+      UName: firebase.auth().currentUser.displayName
     }
   },
   methods:{
 
   },
-  async mounted() {
-    // console.log(firebase.auth().currentUser)
-    db.collection('registered_users').where('email','==',firebase.auth().currentUser.email).get().then(
-      qs =>{
-        qs.forEach(doc=>{
-          this.UName = doc.data().name.first+" "+doc.data().name.last
-        })
-      }
-    )
+  mounted() {
     document.querySelector('body').setAttribute('data-theme','dashboard')
   },
   unmounted() {
-    // clearInterval(this.interval)
-    // document.querySelector('body').setAttribute('data-theme','light')
   }
 }
 </script>
@@ -78,7 +70,21 @@ main{
 .content{
   padding: 40px;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+
+@media only screen and (max-width: 700px)  {
+  .crumb{
+    padding: 10px 0 0 0;
+    margin-left: 20px;
+  }
+
+  .content{
+    padding: 10px;
+  }
+  main{
+    height: calc(100vh - 80px);
+  }
 }
 
 </style>

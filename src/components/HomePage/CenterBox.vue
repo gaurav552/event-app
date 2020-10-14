@@ -58,6 +58,7 @@ name: "CenterBox",
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
+  flex-grow: 1;
 }
 
 .counter .box{
@@ -73,6 +74,7 @@ name: "CenterBox",
   font-size: 19px;
   color: var(--color-frontEnd);
   font-weight: bold;
+  text-align: center;
 }
 
 .counter .box span{
@@ -107,6 +109,13 @@ h3{
 @media only screen and (max-width: 700px){
   img{
     display: none;
+  }
+
+  .center-box{
+    margin-bottom: 30px;
+    display: flex;
+    height: 150px;
+    border-radius: 15px;
   }
 
   .counter{

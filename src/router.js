@@ -14,6 +14,12 @@ import UserPaymentDtails from "@/components/User/UserDetails/UserPaymentDtails";
 import SpecialGuests from "@/components/User/UserDetails/SpecialGuests";
 import UserEventDetails from "@/components/User/UserDetails/UserEventDetails";
 import UserInfo from "@/components/User/UserDetails/UserInfo";
+import DashHome from "@/components/BackEndPage/pages/DashHome";
+import RegisteredUsers from "@/components/BackEndPage/pages/RegisteredUsers";
+import AdminsView from "@/components/BackEndPage/pages/AdminsView";
+import GuestSpeakers from "@/components/BackEndPage/pages/GuestSpeakers";
+import VendorsView from "@/components/BackEndPage/pages/VendorsView";
+
 
 let admins = []
 db.collection("admin_uid").get().then(qs => {
@@ -31,17 +37,40 @@ const routes = [
     {
         path: '/dashboard',
         component: Dashboard,
-        name: 'Dashboard',
-        beforeEnter: (to, from, next) => {
-            if (firebase.auth().currentUser) {
-                if (admins.includes(firebase.auth().currentUser.uid)) {
-                    next()
-                } else {
-                    next({path: '/userDetails'})
-                }
-            } else {
-                next({name: 'Login'})
+        children: [
+            {
+                path: "",
+                component: DashHome
+            },
+            {
+                path: "attendees",
+                component: RegisteredUsers
+            },
+            {
+                path: "admins",
+                component: AdminsView
+            },
+            {
+                path: "guests",
+                component: GuestSpeakers
+            },
+            {
+                path: "vendors",
+                component: VendorsView
             }
+        ],
+        beforeEnter: (to, from, next) => {
+            setTimeout(()=>{
+                if (firebase.auth().currentUser) {
+                    if (admins.includes(firebase.auth().currentUser.uid)) {
+                        next()
+                    } else {
+                        next({path: '/userDetails'})
+                    }
+                } else {
+                    next({name: 'Login'})
+                }
+            },500)
         }
     },
     {
@@ -52,7 +81,7 @@ const routes = [
             setTimeout(() => {
                 if (firebase.auth().currentUser) {
                     if (admins.includes(firebase.auth().currentUser.uid)) {
-                        next({name: 'Dashboard'})
+                        next({path: '/dashboard'})
                     } else {
                         next({path: '/userDetails'})
                     }
@@ -101,7 +130,7 @@ const routes = [
         beforeEnter: (to, from, next) => {
             if (firebase.auth().currentUser) {
                 if (admins.includes(firebase.auth().currentUser.uid)) {
-                    next({name: 'Dashboard'})
+                    next({path: '/dashboard'})
                 } else {
                     next()
                 }

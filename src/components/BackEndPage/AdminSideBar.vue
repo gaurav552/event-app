@@ -2,7 +2,7 @@
   <nav id="sidebar">
     <ul>
       <li>
-        <router-link to="/userDetails">
+        <router-link to="/dashboard">
           <span class="material-icons">
           dashboard
         </span>
@@ -10,35 +10,36 @@
         </router-link>
       </li>
       <li>
-        <router-link to="/userDetails/eventDetails">
+        <router-link to="/dashboard/admins">
           <span class="material-icons">
-            calendar_today
+            admin_panel_settings
           </span>
-          Event Details
+          Admins
         </router-link>
       </li>
       <li>
-        <router-link to="/userDetails/userInfo">
+        <router-link to="/dashboard/attendees">
           <span class="material-icons">
-            portrait
+            how_to_reg
           </span>
-          User Details
+          Registered Attendees
+        </router-link>
+      </li>
+
+      <li>
+        <router-link to="/dashboard/vendors">
+        <span class="material-icons">
+          storefront
+        </span>
+          Vendors
         </router-link>
       </li>
       <li>
-        <router-link to="/userDetails/guests">
+        <router-link to="/dashboard/guests">
         <span class="material-icons">
-          face
+          campaign
         </span>
-          Special Guests
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/userDetails/payments">
-        <span class="material-icons">
-          payments
-        </span>
-          Payment Details
+          Guest Speakers
         </router-link>
       </li>
     </ul>
@@ -47,7 +48,7 @@
 
 <script>
 export default {
-  name: "SideBar"
+name: "AdminSideBar"
 }
 </script>
 
@@ -88,6 +89,7 @@ a {
   nav{
     display: none;
     width: 90px;
+    /*z-index: -1;*/
   }
 
   li {
