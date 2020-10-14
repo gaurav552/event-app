@@ -67,15 +67,18 @@ main{
   display: flex;
   width: 100%;
   height: calc(100vh - 120px);
+  overflow-y: hidden;
 }
 
 .crumb{
   padding: 20px 0;
+  margin-left: 20px;
 }
 
 .content{
   padding: 40px;
   width: 100%;
+  overflow-y: scroll;
 }
 
 </style>

@@ -11,15 +11,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94726144-2546-49a6-8c69-af446c07ab3b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/User/UserDetails/SpecialGuests.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/User/UserDetails/UserEventDetails.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/User/UserDetails/UserInfo.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/User/UserDetails/UserPaymentDtails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/blob1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/blob2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/blob3.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/blob4.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/blob5.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/blob6.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/blob7.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User/UserDetails/SideBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/UserDetails/SideBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HomePage/HomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage/HomePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/User/OrderComplete.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/OrderComplete.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/User/PaymentForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/PaymentForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/User/UserDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/UserDetails.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/User/UserDetails/UserDashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/UserDetails/UserDashboard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +109,8 @@
       <workItem from="1602290348261" duration="17628000" />
       <workItem from="1602393615972" duration="16984000" />
       <workItem from="1602469650254" duration="13311000" />
+      <workItem from="1602554625952" duration="12768000" />
+      <workItem from="1602568560933" duration="4327000" />
     </task>
     <servers />
   </component>
@@ -128,22 +137,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="824" y="398" key="#ESLint/0.0.1920.1040@0.0.1920.1040" timestamp="1601945768369" />
-    <state width="1899" height="191" key="GridCell.Tab.0.bottom" timestamp="1602483434606">
+    <state width="1899" height="191" key="GridCell.Tab.0.bottom" timestamp="1602572932315">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="191" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602483434606" />
-    <state width="1899" height="191" key="GridCell.Tab.0.center" timestamp="1602483434605">
+    <state width="1899" height="191" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602572932315" />
+    <state width="1899" height="191" key="GridCell.Tab.0.center" timestamp="1602572932315">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="191" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602483434605" />
-    <state width="1899" height="191" key="GridCell.Tab.0.left" timestamp="1602483434605">
+    <state width="1899" height="191" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602572932315" />
+    <state width="1899" height="191" key="GridCell.Tab.0.left" timestamp="1602572932315">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="191" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602483434605" />
-    <state width="1899" height="191" key="GridCell.Tab.0.right" timestamp="1602483434605">
+    <state width="1899" height="191" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602572932315" />
+    <state width="1899" height="191" key="GridCell.Tab.0.right" timestamp="1602572932315">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="191" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602483434605" />
+    <state width="1899" height="191" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602572932315" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1602304018793">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
