@@ -5,8 +5,10 @@ import 'firebase/auth'
 
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-    .then(function() {
+    .then(val =>{
+        console.log(val)
     })
-    .catch(function() {
+    .catch((err) => {
+        console.log(err)
     });
 export default firebaseApp.firestore()

@@ -44,7 +44,7 @@ export default {
       links: {
         'Audiences': {path: '/dashboard/attendees', query: {value: 'audience'}},
         'Volunteers': {path: '/dashboard/attendees', query: {value: 'volunteer'}},
-        'Players': {path: '/dashboard/attendees', query: {value: 'players'}},
+        'Players': {path: '/dashboard/attendees', query: {value: 'player'}},
         'Guests': {path: '/dashboard/guests'},
         'Vendors': {path: '/dashboard/vendors'},
         'Admins': {path: '/dashboard/admins'},

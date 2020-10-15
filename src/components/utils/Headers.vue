@@ -36,8 +36,6 @@ name: "AdminHeader",
         this.icon = 'menu'
       } else {
         document.querySelector('#sidebar').style.display='block'
-        document.querySelector('#sidebar').style.position='fixed'
-
         this.icon = 'close'
       }
       this.open = !this.open

@@ -59,6 +59,7 @@ nav {
   background-color: white;
   box-shadow: 0 3px 30px rgba(0, 0, 0, .1), 0 3px 20px rgba(0, 0, 0, .1);
   overflow-y: auto;
+  display: block;
 }
 
 ul {
@@ -91,6 +92,7 @@ a {
     display: none;
     width: 90px;
     /*z-index: -1;*/
+    position: fixed;
   }
 
   li {

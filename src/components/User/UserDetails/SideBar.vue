@@ -53,6 +53,8 @@ export default {
 
 <style scoped>
 nav {
+  display: block;
+  position: fixed;
   width: 180px;
   height: 100%;
   background-color: white;

@@ -20,13 +20,13 @@ import AdminsView from "@/components/BackEndPage/pages/AdminsView";
 import GuestSpeakers from "@/components/BackEndPage/pages/GuestSpeakers";
 import VendorsView from "@/components/BackEndPage/pages/VendorsView";
 
-
-let admins = []
+let admins=[]
 db.collection("admin_uid").get().then(qs => {
     qs.forEach(doc => {
         admins.push(doc.data().uid)
     })
 })
+
 
 const routes = [
     {
@@ -128,15 +128,17 @@ const routes = [
             }
         ],
         beforeEnter: (to, from, next) => {
-            if (firebase.auth().currentUser) {
-                if (admins.includes(firebase.auth().currentUser.uid)) {
-                    next({path: '/dashboard'})
+            setTimeout(() => {
+                if (firebase.auth().currentUser) {
+                    if (admins.includes(firebase.auth().currentUser.uid)) {
+                        next({path: '/dashboard'})
+                    } else {
+                        next()
+                    }
                 } else {
-                    next()
+                    next({name: 'Login'})
                 }
-            } else {
-                next({name: 'Login'})
-            }
+            }, 500)
         }
 
     },

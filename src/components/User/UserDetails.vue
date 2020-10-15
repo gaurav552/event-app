@@ -20,8 +20,6 @@ import 'firebase/auth'
 import SideBar from "@/components/User/UserDetails/SideBar";
 import Headers from "@/components/utils/Headers";
 
-
-
 export default {
 name: "userDetails",
   components:{
