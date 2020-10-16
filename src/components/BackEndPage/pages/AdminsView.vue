@@ -188,9 +188,14 @@ export default {
 }
 
 ul{
-  margin: 20px;
+  width: 100%;
+  overflow-x: auto;
 }
 
+li{
+  width: 100%;
+  min-width: 500px;
+}
 li{
   list-style: none;
   padding: 10px 0;
@@ -264,17 +269,11 @@ button{
   }
 
   li{
-    padding: 5px;
+    padding: 10px;
   }
 
   span{
     font-size: 14px;
-  }
-}
-
-@media only screen and (max-width: 500px){
-  .count{
-    display: none;
   }
 }
 

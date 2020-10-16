@@ -118,8 +118,14 @@ export default {
   justify-content: space-between;
 }
 
-ul,li{
+ul{
   width: 100%;
+  overflow-x: auto;
+}
+
+li{
+  width: 100%;
+  min-width: 500px;
 }
 
 li{
@@ -143,9 +149,9 @@ li{
 .list_email{
   flex: 3 2 28%;
   margin: 0 5px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /*white-space: nowrap;*/
+  /*overflow: hidden;*/
+  /*text-overflow: ellipsis;*/
 }
 
 .list_type{
