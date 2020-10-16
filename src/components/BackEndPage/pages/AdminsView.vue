@@ -117,7 +117,6 @@ export default {
               }
 
               return 0;
-
             })
 
             this.email = ''

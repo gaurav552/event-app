@@ -53,7 +53,7 @@ export default {
         return searcher
       } else {
         return searcher.filter((item)=>{
-          return item.name.toLowerCase().first.startsWith(this.search_query.toLowerCase()) ||
+          return item.name.first.toLowerCase().startsWith(this.search_query.toLowerCase()) ||
             item.name.last.toLowerCase().startsWith(this.search_query.toLowerCase()) ||
             item.email.toLowerCase().startsWith(this.search_query.toLowerCase())
         })
