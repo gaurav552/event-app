@@ -67,7 +67,7 @@ export default {
         return this.users
       } else {
         return this.users.filter((item)=>{
-          return item.name.startsWith(this.search_query)||  item.email.startsWith(this.search_query)
+          return item.name.toLowerCase().startsWith(this.search_query.toLowerCase())||  item.email.toLowerCase().startsWith(this.search_query.toLowerCase())
         })
       }
     }
@@ -91,34 +91,57 @@ export default {
         user.email,
         prompt("Enter our Password to proceed")
       );
+      user.reauthenticateWithCredential(credential).then(() =>{
 
-      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(res=>{
-        db.collection("admin_uid").add({
-          name:this.name,
-          email:this.email,
-          uid:res.user.uid
-        }).then(()=>{
-          let data = {
+        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(res=>{
+          db.collection("admin_uid").add({
             name:this.name,
             email:this.email,
             uid:res.user.uid
-          }
-          this.users.push(data)
+          }).then(()=>{
+            let data = {
+              name:this.name,
+              email:this.email,
+              uid:res.user.uid
+            }
+            this.users.push(data)
+            this.users.sort((a,b)=>{
+              let n1 = a.name
+              let n2 = b.name
 
-          this.email = ''
-          this.password = ''
-          this.name = ''
+              if (n1 < n2) {
+                return -1;
+              }
+              if (n1 > n2) {
+                return 1;
+              }
 
-        }).then(()=>{
-          firebase.auth().signOut()
-          user.reauthenticateWithCredential(credential);
+              return 0;
+
+            })
+
+            this.email = ''
+            this.password = ''
+            this.name = ''
+
+            const tempu = firebase.auth().currentUser;
+            return tempu.updateProfile({
+              displayName: this.users.name
+            })
+
+          }).then(()=>{
+            firebase.auth().signOut()
+          })
         })
+
+      }).then(()=>{
+        user.reauthenticateWithCredential(credential);
       })
 
     }
   },
   mounted() {
-    db.collection("admin_uid").get().then(
+    db.collection("admin_uid").orderBy('name').get().then(
       qs=>{
         qs.forEach( doc =>{
           this.users.push(doc.data())

@@ -53,7 +53,9 @@ export default {
         return searcher
       } else {
         return searcher.filter((item)=>{
-          return item.name.first.startsWith(this.search_query) || item.name.last.startsWith(this.search_query) ||  item.email.startsWith(this.search_query)
+          return item.name.toLowerCase().first.startsWith(this.search_query.toLowerCase()) ||
+            item.name.last.toLowerCase().startsWith(this.search_query.toLowerCase()) ||
+            item.email.toLowerCase().startsWith(this.search_query.toLowerCase())
         })
       }
     }
