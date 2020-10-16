@@ -3,7 +3,7 @@
 
     <div class="list-side">
       <div class="top-row">
-        <h3>Vendor List</h3>
+        <h3>Guest List</h3>
         <label><input placeholder="search" type="text"></label>
       </div>
 
@@ -25,7 +25,7 @@
 
     <div class="form-side">
       <div class="top-row">
-        <h3>Add Vendors</h3>
+        <h3>Add Guests</h3>
       </div>
       <form >
         <label><span>Name</span><input required type="text" ></label>

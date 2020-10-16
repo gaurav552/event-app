@@ -116,6 +116,11 @@ export default {
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+select,input{
+  padding: 5px 10px;
 }
 
 ul{

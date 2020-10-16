@@ -5,8 +5,7 @@ import 'firebase/auth'
 
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-    .then(val =>{
-        console.log(val)
+    .then(() =>{
     })
     .catch((err) => {
         console.log(err)
