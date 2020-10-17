@@ -15,7 +15,7 @@
           <span class="email">Email</span>
           <span class="phone">Phone</span>
         </li>
-        <li v-for="(vendor,i) in render_list" :key="i">
+        <li v-for="(vendor,i) in render_list" :key="i" @click="clicker(i)">
           <span class="count">{{ i + 1 }}</span>
           <span class="name">{{ vendor.name }}</span>
           <span class="uid">{{ vendor.contact_person }}</span>
@@ -29,7 +29,7 @@
       <div class="top-row">
         <h3>Add Vendors</h3>
       </div>
-      <form @submit.prevent="submitter">
+      <form @submit.prevent="submitter" ref="form">
         <label><span>Vendor Name</span><input v-model="newVendor.name" required type="text"></label>
         <label><span>Contact Person</span><input v-model="newVendor.contact_person"  required type="text"></label>
         <label><span>Business Email</span><input v-model="newVendor.email"  required type="text"></label>
@@ -39,18 +39,30 @@
         <label><span>State</span><input required v-model="newVendor.address.state"  type="text"></label>
         <label><span>Country</span><input required v-model="newVendor.address.country"  type="text"></label>
         <div class="buttons">
-          <button type="submit">Submit</button>
+          <AppButton :type="'submit'">{{ selected.on? 'Update':'Submit' }}</AppButton>
+          <AppButton v-if="selected.on" @click="canceller" type="button">Cancel</AppButton>
+<!--          <button v-if="selected.on" @click="canceller" type="button">Cancel</button>-->
         </div>
       </form>
     </div>
   </div>
+
+  <teleport v-if="selected.on" to=".actions">
+    <AppButton @click="deleter">Delete {{vendors[selected.val].name}}</AppButton>
+<!--    <button @click="deleter">Delete {{vendors[selected.val].name}}</button>-->
+  </teleport>
+
 </template>
 
 <script>
 import db from "@/firebaseInit"
+import MyButton from "@/components/utils/MyButton";
 
 export default {
   name: "VendorsView",
+  components:{
+    AppButton:MyButton
+  },
   data() {
     return {
       vendors: [],
@@ -67,24 +79,60 @@ export default {
         },
         type: 'vendor',
         contact_person:''
+      },
+      doc_id:[],
+      selected:{
+        on:false,
+        val:''
       }
     }
   },
   methods:{
-    submitter(e){
-      e.currentTarget.reset()
-      db.collection('vendors_and_guests').add(this.newVendor).then((docRef)=>{
-        (docRef.get().then((doc) => {this.vendors.push(doc.data())}))
-      }).then(()=>{
-        this.newVendor.name = ''
-        this.newVendor.email = ''
-        this.newVendor.phone = ''
-        this.newVendor.contact_person = ''
-        this.newVendor.address.country = ''
-        this.newVendor.address.state = ''
-        this.newVendor.address.city = ''
-        this.newVendor.address.street = ''
-      })
+    clicker(e){
+      this.selected.on = true
+      this.selected.val = e
+      this.newVendor = this.vendors[e]
+      // console.log(this.vendors)
+    },
+    deleter(){
+      db.collection('vendors_and_guests').doc(this.doc_id[this.selected.val]).delete()
+      this.resetVendor()
+    },
+    canceller(){
+      this.resetVendor()
+      db.collection('vendors_and_guests').where('type','==','vendor').orderBy('name').get().then(
+        qs=>{
+          this.vendors = []
+          this.doc_id = []
+          qs.forEach(doc=>{
+            this.vendors.push(doc.data())
+            this.doc_id.push(doc.id)
+          })
+        }
+      )
+    },
+    submitter(){
+      if (this.selected.on){
+        db.collection('vendors_and_guests').doc(this.doc_id[this.selected.val]).update(this.newVendor)
+      } else {
+        db.collection('vendors_and_guests').add(this.newVendor)
+      }
+      this.resetVendor()
+    },
+    resetVendor(){
+      this.$refs.form.reset()
+      this.newVendor.name = ''
+      this.newVendor.email = ''
+      this.newVendor.phone = ''
+      this.newVendor.contact_person = ''
+      this.newVendor.address.country = ''
+      this.newVendor.address.state = ''
+      this.newVendor.address.city = ''
+      this.newVendor.address.street = ''
+
+      this.selected.val=''
+      this.selected.on = false
+
     }
   },
   computed: {
@@ -102,11 +150,13 @@ export default {
   },
   mounted() {
     db.collection("vendors_and_guests").where('type', '==', 'vendor').
-      // orderBy('name').
-    get().then(
+    orderBy('name').onSnapshot(
       qs => {
+        this.vendors = []
+        this.doc_id = []
         qs.forEach(doc => {
           this.vendors.push(doc.data())
+          this.doc_id.push(doc.id)
         })
       }
     )
@@ -220,10 +270,8 @@ label input {
   padding: 0;
 }
 
-button {
+.buttons{
   margin: 20px 0;
-  padding: 10px 20px;
-  width: max-content;
 }
 
 @media only screen and (max-width: 1250px) {

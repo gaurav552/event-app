@@ -105,6 +105,7 @@ export default {
   justify-content: flex-start;
   flex-flow: row wrap;
   align-items: flex-start;
+  padding: 20px;
 }
 
 .top-row {
@@ -178,6 +179,19 @@ li{
   }
   .list_uid{
     display: none;
+  }
+
+  .top-row span{
+    display: none;
+  }
+
+  .top-row .left, .top-row .right{
+    margin: 10px 0;
+  }
+
+  .top-row{
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 </style>

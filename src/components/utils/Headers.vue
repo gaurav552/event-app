@@ -25,8 +25,8 @@ name: "AdminHeader",
   },
   data(){
     return{
-      open:false,
-      icon:'menu'
+      open:true,
+      icon:'close'
     }
   },
   methods:{
@@ -78,7 +78,7 @@ header {
 }
 
 .sidebar{
-  display: none;
+  display: grid;
   place-items: center;
   width: 30px;
   height: 30px;
@@ -99,9 +99,6 @@ header {
   header{
     padding: 20px;
     height: 80px;
-  }
-  .sidebar{
-    display: grid;
   }
 }
 

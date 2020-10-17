@@ -53,8 +53,6 @@ export default {
 
 <style scoped>
 nav {
-  display: block;
-  position: fixed;
   width: 180px;
   height: 100%;
   background-color: white;
@@ -89,7 +87,7 @@ a {
 
 @media only screen and (max-width: 700px){
   nav{
-    display: none;
+    position: fixed;
     width: 90px;
   }
 

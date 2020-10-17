@@ -32,20 +32,29 @@
         <label><span>Email</span><input v-model="email" required type="text"></label>
         <label><span>Password</span><input v-model="password" required type="password"></label>
         <div class="buttons">
-          <button type="submit">Submit</button>
+          <AppButton :type="'submit'">Submit</AppButton>
         </div>
       </form>
     </div>
   </div>
+
+  <teleport to=".actions">
+      <AppButton @click="deleter">Delete Your Admin Account</AppButton>
+  </teleport>
+
 </template>
 
 <script>
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import db from "@/firebaseInit"
+import MyButton from "@/components/utils/MyButton";
 
 export default {
   name: "AdminsView",
+  components:{
+    AppButton:MyButton
+  },
   data() {
     return {
       search_query: '',
@@ -53,10 +62,6 @@ export default {
       name: '',
       email: '',
       password: '',
-      edit_delete_mode: {
-        on: false,
-        val: ''
-      }
     }
   },
   computed: {
@@ -71,6 +76,28 @@ export default {
     }
   },
   methods: {
+    deleter(){
+      let user = firebase.auth().currentUser
+      const credential = firebase.auth.EmailAuthProvider.credential(
+        user.email,
+        prompt("Enter our Password to proceed")
+      );
+      user.reauthenticateWithCredential(credential).then(()=>{
+        user.delete().then(()=>{
+          db.collection("admin_uid").where('uid','==',user.uid).get().then(
+            qs =>{
+              qs.forEach(doc=>{
+                doc.ref.delete()
+              })
+            }
+          )
+        })
+      }).then(()=>{
+        firebase.auth().signOut()
+        this.$router.push('/')
+      })
+
+    },
     submitter(e) {
 
       e.currentTarget.reset()
@@ -80,48 +107,30 @@ export default {
         user.email,
         prompt("Enter our Password to proceed")
       );
+
       user.reauthenticateWithCredential(credential).then(() => {
 
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(res => {
+        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).
+        then(res => {
           db.collection("admin_uid").add({
             name: this.name,
             email: this.email,
             uid: res.user.uid
-          }).then(() => {
-            let data = {
-              name: this.name,
-              email: this.email,
-              uid: res.user.uid
-            }
-            this.users.push(data)
-            this.users.sort((a, b) => {
-              let n1 = a.name
-              let n2 = b.name
-
-              if (n1 < n2) {
-                return -1;
-              }
-              if (n1 > n2) {
-                return 1;
-              }
-
-              return 0;
+          }).then((docRef) => {
+            docRef.get().then((doc)=>{
+              this.users.push(doc.data())
+              firebase.auth().currentUser.updateProfile({
+                displayName: doc.data().name
+              })
+            }).then(()=>{
+              firebase.auth().signOut()
             })
 
             this.email = ''
             this.password = ''
             this.name = ''
-
-            const tempu = firebase.auth().currentUser;
-            return tempu.updateProfile({
-              displayName: this.users.name
-            })
-
-          }).then(() => {
-            firebase.auth().signOut()
           })
         })
-
       }).then(() => {
         user.reauthenticateWithCredential(credential);
       })
@@ -154,6 +163,10 @@ export default {
   display: flex;
   flex-direction: column;
   overflow-x: auto;
+}
+
+.buttons{
+  margin: 20px 0;
 }
 
 .form-side {
@@ -239,11 +252,6 @@ label input {
   padding: 0;
 }
 
-button {
-  margin: 20px 0;
-  padding: 10px 20px;
-  width: max-content;
-}
 
 @media only screen and (max-width: 1250px) {
   .container {

@@ -21,8 +21,8 @@ import GuestSpeakers from "@/components/BackEndPage/pages/GuestSpeakers";
 import VendorsView from "@/components/BackEndPage/pages/VendorsView";
 
 let admins=[]
-db.collection("admin_uid").get().then(qs => {
-    qs.forEach(doc => {
+db.collection("admin_uid").onSnapshot(qs => {
+    qs.docs.forEach(doc =>{
         admins.push(doc.data().uid)
     })
 })
@@ -40,22 +40,27 @@ const routes = [
         children: [
             {
                 path: "",
+                name:'Dashboard',
                 component: DashHome
             },
             {
                 path: "attendees",
+                name:'Attendees',
                 component: RegisteredUsers
             },
             {
                 path: "admins",
+                name:'Admins',
                 component: AdminsView
             },
             {
                 path: "guests",
+                name:'Guests',
                 component: GuestSpeakers
             },
             {
                 path: "vendors",
+                name:'Vendors',
                 component: VendorsView
             }
         ],
@@ -70,7 +75,7 @@ const routes = [
                 } else {
                     next({name: 'Login'})
                 }
-            },500)
+            },1000)
         }
     },
     {
@@ -88,7 +93,7 @@ const routes = [
                 } else {
                     next()
                 }
-            }, 500)
+            }, 1000)
 
         }
     },
@@ -138,7 +143,7 @@ const routes = [
                 } else {
                     next({name: 'Login'})
                 }
-            }, 500)
+            }, 1000)
         }
 
     },
@@ -160,6 +165,5 @@ const router = createRouter(
         routes
     }
 )
-
 
 export default router

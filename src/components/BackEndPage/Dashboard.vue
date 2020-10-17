@@ -7,8 +7,13 @@
     <main>
       <SideBar></SideBar>
       <div class="content">
-        <div class="crumb">Dashboard</div>
-        <router-view></router-view>
+        <div class="bread">
+          <div class="crumb">{{crumb}}</div>
+          <div class="actions">
+          </div>
+        </div>
+
+        <router-view v-if="isMounted"></router-view>
       </div>
     </main>
   </div>
@@ -24,14 +29,22 @@ export default {
 name: "Dashboard",
   components:{
     SideBar:AdminSideBar,
-    AppHeader:AdminHeader
+    AppHeader:AdminHeader,
   },
   data(){
     return{
-      UName: firebase.auth().currentUser.displayName
+      UName: firebase.auth().currentUser.displayName,
+      isMounted:false,
+      crumb: this.$route.name === 'Dashboard' ? this.$route.name : 'Dashboard / '+this.$route.name
+    }
+  },
+  watch:{
+    $route(to){
+      this.crumb = to.name === 'Dashboard' ? to.name : 'Dashboard / '+to.name
     }
   },
   mounted() {
+    this.isMounted = true
     document.querySelector('body').setAttribute('data-theme','dashboard')
   },
 }
@@ -46,6 +59,18 @@ name: "Dashboard",
   font-family: 'Quicksand', sans-serif;
 }
 
+.crumb{
+  padding: 20px 0;
+}
+
+.bread{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 80px;
+  padding: 0 40px;
+}
+
 main{
   align-self: flex-end;
   display: flex;
@@ -53,12 +78,6 @@ main{
   height: calc(100vh - 120px);
   overflow-y: hidden;
 }
-
-.crumb{
-  padding: 20px 0;
-  margin-left: 20px;
-}
-
 .content{
   padding: 40px;
   width: 100%;
@@ -67,8 +86,7 @@ main{
 
 @media only screen and (max-width: 700px)  {
   .crumb{
-    padding: 10px 0 0 0;
-    margin-left: 20px;
+    padding: 10px 0;
   }
 
   .content{
@@ -76,6 +94,11 @@ main{
   }
   main{
     height: calc(100vh - 80px);
+  }
+
+  .bread{
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 </style>
