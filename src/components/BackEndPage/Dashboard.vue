@@ -99,6 +99,7 @@ main{
   .bread{
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
   }
 }
 </style>

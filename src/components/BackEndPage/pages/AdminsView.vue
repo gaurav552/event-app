@@ -162,7 +162,6 @@ export default {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  overflow-x: auto;
 }
 
 .buttons{
@@ -191,16 +190,23 @@ export default {
 }
 
 ul {
-  margin: 20px;
-  overflow: auto;
+  margin: 10px;
+  overflow-x: auto;
+  overflow-y: visible;
 }
-
 li {
   list-style: none;
-  padding: 10px 0;
+  padding: 10px 5px;
   display: flex;
   justify-content: space-between;
   min-width: 500px;
+  margin: 5px;
+  border-radius: 4px;
+}
+
+li:hover{
+  background-color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0 20px 40px -12px, rgba(0, 0, 0, 0.3) 0px 15px 30px -18px;
 }
 
 form {

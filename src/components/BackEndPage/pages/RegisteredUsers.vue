@@ -127,17 +127,23 @@ select,input{
 ul{
   width: 100%;
   overflow-x: auto;
+  margin: 10px;
 }
 
-li{
-  width: 100%;
-  min-width: 500px;
-}
 
-li{
+li {
   list-style: none;
-  padding: 20px;
+  padding: 10px 5px;
   display: flex;
+  justify-content: space-between;
+  min-width: 500px;
+  margin: 5px;
+  border-radius: 4px;
+}
+
+li:hover{
+  background-color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0 20px 40px -12px, rgba(0, 0, 0, 0.3) 0px 15px 30px -18px;
 }
 
 .list_count{

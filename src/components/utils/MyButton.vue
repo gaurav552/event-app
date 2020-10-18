@@ -36,4 +36,10 @@ button:active {
   box-shadow: none;
 }
 
+@media only screen and (max-width: 700px) {
+  button{
+    margin-left: 0;
+  }
+}
+
 </style>
