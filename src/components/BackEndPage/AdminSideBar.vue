@@ -37,7 +37,7 @@
         </li>
       </router-link>
 
-      <router-link v-slot="{ navigate, isExactActive}" to="/dashboard/guests">
+      <router-link custom v-slot="{ navigate, isExactActive}" to="/dashboard/guests">
         <li :class="isExactActive ? 'active':''" @click="navigate">
           <span class="material-icons">
             campaign

@@ -176,6 +176,10 @@ label span {
   margin-bottom: 20px;
 }
 
+.card-body p{
+  white-space: pre-wrap;
+}
+
 @media only screen and (max-width: 1050px) {
   .card {
     flex: 1 1 100%;
