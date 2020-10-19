@@ -37,12 +37,21 @@
         </li>
       </router-link>
 
-      <router-link v-slot="{ navigate, isExactActive}" custom to="/dashboard/guests">
+      <router-link v-slot="{ navigate, isExactActive}" to="/dashboard/guests">
         <li :class="isExactActive ? 'active':''" @click="navigate">
           <span class="material-icons">
             campaign
           </span>
           Guest Speakers
+        </li>
+      </router-link>
+
+      <router-link v-slot="{ navigate, isExactActive}" custom to="/dashboard/event">
+        <li :class="isExactActive ? 'active':''" @click="navigate">
+          <span class="material-icons">
+            golf_course
+          </span>
+          Event Details
         </li>
       </router-link>
 
@@ -59,14 +68,15 @@ export default {
 <style scoped>
 nav {
   width: 180px;
-  height: 100%;
   background-color: white;
-  box-shadow: 0 3px 30px rgba(0, 0, 0, .1), 0 3px 20px rgba(0, 0, 0, .1);
   overflow-y: auto;
+  box-shadow: 0 3px 30px rgba(0, 0, 0, .1), 0 3px 20px rgba(0, 0, 0, .1);
 }
 
 ul {
   text-align: center;
+  height: max-content;
+  overflow-y: auto;
 }
 
 li {
@@ -103,9 +113,17 @@ a {
 
 @media only screen and (max-width: 700px) {
   nav {
-    width: 90px;
+    width: 100px;
     /*z-index: -1;*/
-    position: fixed;
+    top:80px;
+    bottom:0;
+    position:fixed;
+    overflow-y:auto;
+    overflow-x:hidden;
+  }
+
+  ul{
+    height: max-content;
   }
 
   li {

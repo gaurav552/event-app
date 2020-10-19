@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="vendors.length > 0">
 
     <div class="list-side">
       <div class="top-row">
@@ -120,7 +120,6 @@ export default {
       this.resetVendor()
     },
     resetVendor(){
-      this.$refs.form.reset()
       this.newVendor.name = ''
       this.newVendor.email = ''
       this.newVendor.phone = ''

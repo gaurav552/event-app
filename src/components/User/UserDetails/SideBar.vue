@@ -1,46 +1,51 @@
 <template>
   <nav id="sidebar">
     <ul>
-      <li>
-        <router-link to="/userDetails">
+      <router-link v-slot="{ navigate, isExactActive}" custom to="/userDetails">
+        <li :class="isExactActive ? 'active':''" @click="navigate">
           <span class="material-icons">
-          dashboard
-        </span>
-          Dashboard
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/userDetails/eventDetails">
+             dashboard
+          </span>
+         Dashboard
+        </li>
+      </router-link>
+
+      <router-link v-slot="{ navigate, isExactActive}" custom to="/userDetails/eventDetails">
+        <li :class="isExactActive ? 'active':''" @click="navigate">
           <span class="material-icons">
-            calendar_today
+             calendar_today
           </span>
           Event Details
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/userDetails/userInfo">
+        </li>
+      </router-link>
+
+      <router-link v-slot="{ navigate, isExactActive}" custom to="/userDetails/userInfo">
+        <li :class="isExactActive ? 'active':''" @click="navigate">
           <span class="material-icons">
-            portrait
+             portrait
           </span>
-          User Details
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/userDetails/guests">
-        <span class="material-icons">
-          face
-        </span>
+          User Detail
+        </li>
+      </router-link>
+
+      <router-link v-slot="{ navigate, isExactActive}" custom to="/userDetails/guests">
+        <li :class="isExactActive ? 'active':''" @click="navigate">
+          <span class="material-icons">
+             face
+          </span>
           Special Guests
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/userDetails/payments">
-        <span class="material-icons">
-          payments
-        </span>
-          Payment Details
-        </router-link>
-      </li>
+        </li>
+      </router-link>
+
+      <router-link v-slot="{ navigate, isExactActive}" custom to="/userDetails/payments">
+        <li :class="isExactActive ? 'active':''" @click="navigate">
+          <span class="material-icons">
+             payments
+          </span>
+            Payment Details
+        </li>
+      </router-link>
+
     </ul>
   </nav>
 </template>
@@ -54,14 +59,15 @@ export default {
 <style scoped>
 nav {
   width: 180px;
-  height: 100%;
   background-color: white;
-  box-shadow: 0 3px 30px rgba(0, 0, 0, .1), 0 3px 20px rgba(0, 0, 0, .1);
   overflow-y: auto;
+  box-shadow: 0 3px 30px rgba(0, 0, 0, .1), 0 3px 20px rgba(0, 0, 0, .1);
 }
 
 ul {
   text-align: center;
+  height: max-content;
+  overflow-y: auto;
 }
 
 li {
@@ -77,6 +83,17 @@ li span {
 
 li:hover {
   background: #f1f1f1;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #f44336;
+  color: white;
+  cursor: default!important;
+}
+
+.active:hover{
+  background-color: #f44336;
 }
 
 a {
@@ -85,10 +102,19 @@ a {
   place-items: center;
 }
 
-@media only screen and (max-width: 700px){
-  nav{
-    position: fixed;
-    width: 90px;
+@media only screen and (max-width: 700px) {
+  nav {
+    width: 100px;
+    /*z-index: -1;*/
+    top:80px;
+    bottom:0;
+    position:fixed;
+    overflow-y:auto;
+    overflow-x:hidden;
+  }
+
+  ul{
+    height: max-content;
   }
 
   li {

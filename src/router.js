@@ -19,13 +19,26 @@ import RegisteredUsers from "@/components/BackEndPage/pages/RegisteredUsers";
 import AdminsView from "@/components/BackEndPage/pages/AdminsView";
 import GuestSpeakers from "@/components/BackEndPage/pages/GuestSpeakers";
 import VendorsView from "@/components/BackEndPage/pages/VendorsView";
+import EventDetails from "@/components/BackEndPage/pages/EventDetails";
 
-let admins=[]
+let admins = []
 db.collection("admin_uid").onSnapshot(qs => {
-    qs.docs.forEach(doc =>{
+    qs.docs.forEach(doc => {
         admins.push(doc.data().uid)
     })
 })
+
+function checker(to, from, next){
+    if (firebase.auth().currentUser) {
+        if (admins.includes(firebase.auth().currentUser.uid)) {
+            next({path: '/dashboard'})
+        } else {
+            next({path: '/userDetails'})
+        }
+    } else {
+        next()
+    }
+}
 
 
 const routes = [
@@ -40,42 +53,47 @@ const routes = [
         children: [
             {
                 path: "",
-                name:'Dashboard',
+                name: 'Admin Dashboard',
                 component: DashHome
             },
             {
                 path: "attendees",
-                name:'Attendees',
+                name: 'Attendees',
                 component: RegisteredUsers
             },
             {
                 path: "admins",
-                name:'Admins',
+                name: 'Admins',
                 component: AdminsView
             },
             {
                 path: "guests",
-                name:'Guests',
+                name: 'Guests',
                 component: GuestSpeakers
             },
             {
                 path: "vendors",
-                name:'Vendors',
+                name: 'Vendors',
                 component: VendorsView
+            },
+            {
+                path: "event",
+                name: 'Event',
+                component: EventDetails
             }
+
         ],
         beforeEnter: (to, from, next) => {
-            setTimeout(()=>{
-                if (firebase.auth().currentUser) {
-                    if (admins.includes(firebase.auth().currentUser.uid)) {
-                        next()
-                    } else {
-                        next({path: '/userDetails'})
-                    }
+
+            if (firebase.auth().currentUser) {
+                if (admins.includes(firebase.auth().currentUser.uid)) {
+                    next()
                 } else {
-                    next({name: 'Login'})
+                    next({path: '/userDetails'})
                 }
-            },1000)
+            } else {
+                next({name: 'Login'})
+            }
         }
     },
     {
@@ -83,18 +101,13 @@ const routes = [
         component: Login,
         name: 'Login',
         beforeEnter: (to, from, next) => {
-            setTimeout(() => {
-                if (firebase.auth().currentUser) {
-                    if (admins.includes(firebase.auth().currentUser.uid)) {
-                        next({path: '/dashboard'})
-                    } else {
-                        next({path: '/userDetails'})
-                    }
-                } else {
-                    next()
-                }
-            }, 1000)
-
+            if (admins.length === 0) {
+                setTimeout(() => {
+                    checker(to, from, next)
+                }, 1000)
+            } else {
+                checker(to,from,next)
+            }
         }
     },
     {
@@ -113,45 +126,46 @@ const routes = [
         children: [
             {
                 path: '',
+                name: 'Dashboard',
                 component: UserDashboard
             },
             {
                 path: 'userInfo',
+                name: 'User Info',
                 component: UserInfo
             },
             {
                 path: 'eventDetails',
+                name: 'Event Details',
                 component: UserEventDetails
             },
             {
                 path: 'guests',
+                name: 'Special Guests',
                 component: SpecialGuests
             },
             {
                 path: 'payments',
+                name: 'Payment Details',
                 component: UserPaymentDtails
             }
         ],
         beforeEnter: (to, from, next) => {
-            setTimeout(() => {
-                if (firebase.auth().currentUser) {
-                    if (admins.includes(firebase.auth().currentUser.uid)) {
-                        next({path: '/dashboard'})
-                    } else {
-                        next()
-                    }
+            if (firebase.auth().currentUser) {
+                if (admins.includes(firebase.auth().currentUser.uid)) {
+                    next({path: '/dashboard'})
                 } else {
-                    next({name: 'Login'})
+                    next()
                 }
-            }, 1000)
+            } else {
+                next({name: 'Login'})
+            }
         }
-
     },
     {
         path: '/orderComplete',
         component: OrderComplete,
         name: 'OrderComplete',
-
     },
     {
         path: '/:pathMatch(.*)*',

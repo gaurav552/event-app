@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="users.length > 0">
 
     <div class="list-side">
       <div class="top-row">
@@ -30,7 +30,7 @@
       <form @submit.prevent="submitter">
         <label><span>Name</span><input v-model="name" required type="text"></label>
         <label><span>Email</span><input v-model="email" required type="text"></label>
-        <label><span>Password</span><input v-model="password" required type="password"></label>
+        <label><span>Password</span><input autocomplete="off" v-model="password" required type="password"></label>
         <div class="buttons">
           <AppButton :type="'submit'">Submit</AppButton>
         </div>

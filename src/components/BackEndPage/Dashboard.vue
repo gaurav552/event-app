@@ -35,12 +35,12 @@ name: "Dashboard",
     return{
       UName: firebase.auth().currentUser.displayName,
       isMounted:false,
-      crumb: this.$route.name === 'Dashboard' ? this.$route.name : 'Dashboard / '+this.$route.name
+      crumb: this.$route.name === 'Admin Dashboard' ? 'Dashboard' : 'Dashboard / '+this.$route.name
     }
   },
   watch:{
     $route(to){
-      this.crumb = to.name === 'Dashboard' ? to.name : 'Dashboard / '+to.name
+      this.crumb = to.name === 'Admin Dashboard' ? to.name : 'Dashboard / '+to.name
     }
   },
   mounted() {

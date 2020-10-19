@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="sensitive.guests.length > 0">
     <div class="card userDetails">
       <h1>General Info</h1>
       <p>Email - <span>{{general.email}}</span></p>

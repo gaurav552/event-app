@@ -1,22 +1,34 @@
 <template>
-  <div class="container">
-    <router-link v-for="(item, i) in listItems" :key="i" :class="'card '+i.toLowerCase()" :to="links[i]">
-      <div class="card-heading">
-        <h1>{{ i }}</h1>
-      </div>
-      <div class="card-footer">
-        Total {{ i }} : {{ item }}
+  <div class="container" v-if="loaded">
+    <router-link v-slot="{navigate}" custom v-for="(item, i) in listItems" :key="i" :to="links[i]">
+      <div :class="'card '+i.toLowerCase()" @click="navigate">
+        <div class="card-heading">
+          <h1>{{ i }}</h1>
+        </div>
+        <div class="card-footer">
+          Total {{ i }} : {{ item }}
+        </div>
       </div>
     </router-link>
 
     <div class="card eventDetails">
       <div class="card-header">
-        <h1>Event Details</h1>
+        <h1>{{ event.name }}</h1>
       </div>
       <div class="card-body">
-        <p>{{ event.name }}</p>
-        <p>{{ event.venue }}</p>
-        <p>{{ event.date }}</p>
+        <p>
+          <span>Venue :</span>
+          <span>{{ event.venue }}</span>
+        </p>
+        <p>
+          <span>Date : </span>
+          <span>{{ event.date }}</span>
+        </p>
+      </div>
+      <div class="card-footer">
+        <router-link custom v-slot="{navigate}" to="/dashboard/event">
+          <MyButton @click="navigate">View Details</MyButton>
+        </router-link>
       </div>
     </div>
   </div>
@@ -28,9 +40,13 @@
 import 'firebase/auth'
 import db from "@/firebaseInit"
 import {DateTime} from "luxon";
+import MyButton from "@/components/utils/MyButton";
 
 export default {
   name: "DashHome",
+  components:{
+    MyButton: MyButton
+  },
   data() {
     return {
       listItems: {
@@ -53,7 +69,8 @@ export default {
         name:'',
         date:'',
         venue:''
-      }
+      },
+      loaded:false
     }
   },
   methods: {
@@ -90,6 +107,7 @@ export default {
       qs=>{
         this.event = qs.data()
         this.event.date = this.getFullDate(this.event.date.seconds)
+        this.loaded = true
       }
     )
   }
@@ -117,7 +135,7 @@ export default {
 }
 
 .eventDetails{
-  flex-grow: 2;
+  flex-grow: 10;
 }
 
 .card-heading {
@@ -145,6 +163,10 @@ export default {
   text-align: center;
 }
 
+.card-header h1{
+  font-size: clamp(22px, 3vw, 33px);
+}
+
 .card-footer {
   text-align: center;
   padding: 20px;
@@ -162,6 +184,26 @@ export default {
 .card-body p{
   font-size: clamp(15px, 3vw, 20px);
   line-height: clamp(20px, 3vw, 30px);
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.card-body p span{
+  margin: 10px;
+  text-align: right;
+}
+.card-body p span:first-child{
+  flex: 1 0 20%;
+}
+
+.card-body p span:last-child{
+  flex: 1 0 70%;
+  text-align: left;
+}
+
+.card-footer button{
+  margin: 0;
 }
 
 a {
@@ -178,7 +220,9 @@ a {
     padding: 20px 10px;
     border-radius: 0 0 15px 15px;
   }
-
+  .card-body p span{
+    margin: 5px;
+  }
   .card-header{
     padding: 15px;
     border-radius: 15px 15px 0 0;

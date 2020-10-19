@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="guests.length > 0">
 
     <div class="list-side">
       <div class="top-row">
@@ -87,10 +87,19 @@ export default {
     },
     canceller(){
       this.resetGuest()
+      db.collection("vendors_and_guests").where('type', '==', 'guest').orderBy('name').get().then(
+        qs=>{
+          this.guests = []
+          this.doc_id = []
+          qs.forEach(doc => {
+            this.guests.push(doc.data())
+            this.doc_id.push(doc.id)
+          })
+        }
+      )
     },
     submitter(){
-
-      if (this.selected){
+      if (this.selected.on){
         db.collection("vendors_and_guests").doc(this.doc_id[this.selected.val]).update(this.newGuest)
       } else {
         db.collection("vendors_and_guests").add(this.newGuest)
@@ -99,8 +108,10 @@ export default {
       this.resetGuest()
     },
     resetGuest(){
-      this.$refs.form.reset()
-      this.newGuest = ''
+      this.newGuest.email = ''
+      this.newGuest.name = ''
+      this.newGuest.description = ''
+      this.newGuest.phone = ''
       this.selected.val=''
       this.selected.on = false
     }

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="all_list.length > 0">
     <div class="top-row">
       <div class="left">
         <label>
@@ -87,8 +87,6 @@ export default {
             doc_id:doc.id
           }
           this.all_list.push(val)
-
-          // this.all_list.splice(0,1)
         })
       }
     )

@@ -7,7 +7,7 @@
     <main>
       <SideBar></SideBar>
       <div class="content">
-        <div class="crumb">Dashboard</div>
+        <div class="crumb">{{ crumb }}</div>
         <router-view></router-view>
       </div>
     </main>
@@ -28,7 +28,13 @@ name: "userDetails",
   },
   data(){
     return{
-      UName: firebase.auth().currentUser.displayName
+      UName: firebase.auth().currentUser.displayName,
+      crumb: this.$route.name === 'Dashboard' ? this.$route.name : 'Dashboard / '+this.$route.name
+    }
+  },
+  watch:{
+    $route(to){
+      this.crumb = to.name === 'Dashboard' ? to.name : 'Dashboard / '+to.name
     }
   },
   methods:{
