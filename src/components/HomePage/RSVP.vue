@@ -117,6 +117,14 @@ form{
     font-size: 20px;
   }
 
+@media screen and (max-width: 1400px){
+  input{
+    padding: 10px;
+    height: 50px;
+    font-size: 17px;
+  }
+}
+
   @media only screen and (max-width: 700px) {
     .material-icons {
       font-size: 16px;

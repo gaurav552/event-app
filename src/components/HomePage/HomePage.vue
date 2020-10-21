@@ -132,8 +132,21 @@ main .heading h1{
   opacity: .5;
 }
 
+@media screen and (max-width: 1400px){
+  main .heading{
+    margin-bottom: 30px;
+  }
 
-@media only screen and (max-width: 700px) {
+  main .heading h3{
+    font-size: 30px;
+  }
+
+  main .heading h1{
+    font-size: 55px
+  }
+}
+
+  @media only screen and (max-width: 700px) {
   .loginBtn {
     top: revert;
     bottom: 20px;
@@ -149,12 +162,23 @@ main .heading h1{
     font-size: 16px;
   }
 
+    main .heading h3{
+      font-size: clamp(18px, 2.5vw, 35px);
+    }
+
+    main .heading h1{
+      font-size: clamp(25px, 5vw, 60px);
+    }
+
+
   main .heading{
     margin-bottom: 30px;
   }
 }
 
+
 </style>
+
 
 
 

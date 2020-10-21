@@ -106,7 +106,19 @@ h3{
   }
 }
 
-@media only screen and (max-width: 700px){
+@media screen and (max-width: 1400px){
+  .center-box{
+    height: 250px;
+    margin-bottom: 30px;
+  }
+  .counter .box{
+    width: 130px;
+    height: 60px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 700px){
   img{
     display: none;
   }
