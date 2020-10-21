@@ -111,7 +111,6 @@ Directory of D:\vue\event-app\src
 
      Total Files Listed:
               33 File(s)        105,941 bytes
-              23 Dir(s)  170,133,155,840 bytes free
 ```
 
 ---
